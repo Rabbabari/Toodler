@@ -21,6 +21,6 @@ module.exports = {
 	},
 	plugins: ["react"],
 	rules: {
-		semi: "always",
+		semi: "2",
 	},
 };
