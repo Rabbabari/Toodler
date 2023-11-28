@@ -1,16 +1,15 @@
 import React from "react";
 import { View, Text, TouchableHighlight, Image } from "react-native";
-import logo from "../../resourses/logo.png";
+import logo from "../../resources/logo.png";
 import styles from "./styles";
 
 const Main = () => {
-	<View>
-		<Image source={logo} />
-		<Text>The Toodler app!</Text>
-		<TouchableHighlight>
-			<Text>View tasks!</Text>
-		</TouchableHighlight>
-	</View>;
+	return (
+		<View style={styles.container}>
+			<Image source={logo} style={styles.logo} />
+			<Text style={styles.title}>View tasks</Text>
+		</View>
+	);
 };
 
 export default Main;
