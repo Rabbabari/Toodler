@@ -1,1 +1,1 @@
-export const periwinkle = "#8ab6d6";
+export const pink = "#f6717d";
