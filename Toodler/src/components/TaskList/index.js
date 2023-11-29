@@ -1,9 +1,11 @@
 import React from "react";
-import { View, FlatList, Text, TouchableHighlight } from "react-native";
+import { View, FlatList, Text, TouchableOpacity } from "react-native";
+import { AntDesign } from "@expo/vector-icons";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 import styles from "./styles";
+import Task from "../Task";
 
-const TaskList = ({ tasks, onCheck }) => {
+const TaskList = ({ tasks, onCheck, onLongPress, selectedTasks }) => {
 	return (
 		<View>
 			<FlatList
@@ -11,19 +13,12 @@ const TaskList = ({ tasks, onCheck }) => {
 				data={tasks}
 				renderItem={({ item }) => {
 					return (
-						<View style={styles.listContainer}>
-							<BouncyCheckbox onPress={onCheck} />
-							<TouchableHighlight>
-								<View style={styles.taskContainer}>
-									<Text style={styles.taskName}>
-										{item.name}
-									</Text>
-									<Text style={styles.taskDescription}>
-										{item.description}
-									</Text>
-								</View>
-							</TouchableHighlight>
-						</View>
+						<Task
+							task={item}
+							onLongPress={onLongPress}
+							isSelected={selectedTasks.indexOf(item.id) !== -1}
+							onCheck={(id) => onCheck(item.id)}
+						/>
 					);
 				}}
 				keyExtractor={(item) => item.id}
