@@ -12,7 +12,7 @@ const BoardThumbnail = ({ id, name, URL, onLongPress, isSelected }) => {
 	return (
 		<TouchableOpacity
 			onLongPress={() => onLongPress(id)}
-			//onPress={() => navigate("Preview", { boardID: id })}
+			onPress={() => navigate("Lists", { boardId: id })}
 		>
 			{isSelected && (
 				<AntDesign name="checkcircleo" style={styles.checkmark} />
@@ -32,15 +32,15 @@ const BoardThumbnail = ({ id, name, URL, onLongPress, isSelected }) => {
 
 BoardThumbnail.propTypes = {
 	// The board's unique identifier
-	id: PropTypes.number.isRequired,
+	id: PropTypes.number,
 	// The board's name
-	name: PropTypes.string.isRequired,
+	name: PropTypes.string,
 	// The board's thumbnail photo represented by a URL
-	thumbnailPhoto: PropTypes.string.isRequired,
+	thumbnailPhoto: PropTypes.string,
 	// Whether or not the board is selected
-	isSelected: PropTypes.bool.isRequired,
+	isSelected: PropTypes.bool,
 	// When a board is long pressed
-	onLongPress: PropTypes.func.isRequired,
+	onLongPress: PropTypes.func,
 };
 
 export default BoardThumbnail;
