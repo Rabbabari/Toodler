@@ -1,8 +1,8 @@
 import { StyleSheet } from "react-native";
-import { pink } from "../../styles/colors";
 
 export default StyleSheet.create({
 	listContainer: {
+		flex: 1,
 		flexDirection: "row",
 		flexWrap: "wrap",
 		padding: 10,

@@ -45,12 +45,22 @@ const Lists = () => {
 		setLists([...lists, newList]);
 	};
 
+	const onDeleteSelectedLists = () => {
+		const newLists = lists.filter(
+			(list) => !selectedLists.includes(list.id)
+		);
+		setLists(newLists);
+		setSelectedLists([]);
+	};
+
+	console.log(lists);
 	return (
 		<View style={{ flex: 1 }}>
 			<Toolbar
 				onAdd={() => setIsAddModalOpen(true)}
 				hasSelectedLists={selectedLists.length > 0}
 				selectedLists={selectedLists}
+				onDelete={onDeleteSelectedLists}
 			/>
 			<ListofLists
 				onLongPress={(id) => onListLongPress(id)}
