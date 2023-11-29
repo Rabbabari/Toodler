@@ -10,7 +10,6 @@ import Lists from "../views/Lists";
 import TaskListDisplay from "../views/Task";
 
 const Routes = () => {
-	console.log("Routes");
 	return (
 		<NavigationContainer>
 			<Stack.Navigator initialRouteName="Main">
