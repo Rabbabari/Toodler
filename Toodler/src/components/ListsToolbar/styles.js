@@ -3,14 +3,12 @@ import { StyleSheet } from "react-native";
 export default StyleSheet.create({
 	toolbar: {
 		flexDirection: "row",
-		//alignItems: "center",
+		alignItems: "center",
 		justifyContent: "center",
-		paddingTop: 10,
-		paddingBottom: 10,
-		height: 80,
+		height: 120,
 		backgroundColor: "white",
 	},
-	toolbarAction: {
+	tollbarAction: {
 		flex: 1,
 		marginTop: 20,
 		alignItems: "center",
