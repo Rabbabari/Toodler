@@ -6,6 +6,6 @@ export default StyleSheet.create({
 		flexDirection: "row",
 		flexWrap: "wrap",
 		padding: 10,
-		backgroundColor: pink,
+		backgroundColor: "#f2e9e1",
 	},
 });
