@@ -48,7 +48,7 @@ const Toolbar = ({ hasSelectedLists, selectedLists }) => {
 
 Toolbar.propTypes = {
 	hasSelectedLists: PropTypes.bool.isRequired,
-	selectedLists: PropTypes.arrayOf(PropTypes.string).isRequired,
+	selectedLists: PropTypes.arrayOf(PropTypes.number).isRequired,
 };
 
 export default Toolbar;
