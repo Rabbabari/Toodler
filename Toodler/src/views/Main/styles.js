@@ -8,6 +8,7 @@ export default StyleSheet.create({
 		alignItems: "center",
 		justifyContent: "space-around",
 		fontWeight: 100,
+		backgroundColor: pink,
 	},
 	logo: {
 		width: 300,
