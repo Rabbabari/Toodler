@@ -23,9 +23,9 @@ const ListName = ({ id, name, color, onLongPress, isSelected }) => {
 };
 
 ListName.propTypes = {
-	id: PropTypes.number.isRequired,
-	name: PropTypes.string.isRequired,
-	color: PropTypes.string.isRequired,
+	id: PropTypes.number,
+	name: PropTypes.string,
+	color: PropTypes.string,
 	onLongPress: PropTypes.func.isRequired,
 	isSelected: PropTypes.bool.isRequired,
 };
