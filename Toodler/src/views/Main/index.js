@@ -4,12 +4,12 @@ import logo from "../../resources/logo.png";
 import styles from "./styles";
 
 const Main = ({ navigation: { navigate } }) => {
-	console.log("Main");
+	//console.log("Main");
 	return (
 		<View style={styles.container}>
 			<Image source={logo} style={styles.logo} />
 			<TouchableHighlight
-				onPress={() => navigate("Gallery")}
+				onPress={() => navigate("Board")}
 				style={styles.button}
 			>
 				<Text style={styles.buttonText}>View boards</Text>
