@@ -4,7 +4,7 @@ import NativeModal from "react-native-modal";
 import { View, Text } from "react-native";
 import styles from "./styles";
 
-const Modal = ({ isOpen, closeModal, title, children }) => {
+const Modal = ({ isOpen, closeModal, title, children }) => (
 	<NativeModal
 		isVisible={isOpen}
 		hasBackdrop={true}
@@ -17,7 +17,14 @@ const Modal = ({ isOpen, closeModal, title, children }) => {
 			<Text>{title}</Text>
 			{children}
 		</View>
-	</NativeModal>;
+	</NativeModal>
+);
+
+Modal.propTypes = {
+	isOpen: PropTypes.bool,
+	closeModal: PropTypes.func,
+	title: PropTypes.string,
+	children: PropTypes.node,
 };
 
 export default Modal;
