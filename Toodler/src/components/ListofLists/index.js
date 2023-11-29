@@ -37,7 +37,7 @@ ListofLists.propTypes = {
 			boardId: PropTypes.number,
 		})
 	),
-	selectedLists: PropTypes.arrayOf(PropTypes.string),
+	selectedLists: PropTypes.arrayOf(PropTypes.number),
 	onLongPress: PropTypes.func.isRequired,
 };
 
