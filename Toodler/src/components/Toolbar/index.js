@@ -37,7 +37,7 @@ const Toolbar = ({ hasSelectedBoards, onCreateBoard }) => {
 Toolbar.propTypes = {
 	// Whether or not there are any selected boards
 	hasSelectedBoards: PropTypes.bool.isRequired,
-	onCreateBoard: PropTypes.func.isRequired,
+	onCreateBoard: PropTypes.func,
 };
 
 export default Toolbar;
