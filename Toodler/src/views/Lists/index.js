@@ -9,14 +9,6 @@ import data from "../../resources/data.json";
 const Lists = () => {
 	const route = useRoute();
 	const boardId = route.params?.boardId;
-<<<<<<< HEAD
-
-	const [lists, setLists] = useState(data.lists);
-	const [selectedLists, setSelectedLists] = useState([]);
-	const [isAddModalOpen, setIsAddModalOpen] = useState(false);
-
-	const displayLists = lists.filter((list) => list.boardId === boardId);
-=======
 
 	// Finding all lists that belong to the board
 	const displayLists = data.lists.filter(
@@ -25,7 +17,6 @@ const Lists = () => {
 
 	const [lists, setLists] = useState(data.lists);
 	const [selectedLists, setSelectedLists] = useState([]);
->>>>>>> rebekka
 
 	const onListLongPress = (id) => {
 		if (selectedLists.indexOf(id) != -1) {
