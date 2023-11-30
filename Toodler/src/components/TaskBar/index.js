@@ -1,12 +1,21 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { View, TouchableHighlight, Text } from "react-native";
 import styles from "./styles";
 
-const TaskBar = ({ hasSelectedTasks, selectedTasksLength, deleteTask }) => {
+const TaskBar = ({
+	hasSelectedTasks,
+	selectedTasksLength,
+	deleteTask,
+	onAdd,
+}) => {
 	const lenOne = selectedTasksLength === 1;
 	return (
 		<View styleName="horzontal" style={styles.toolbar}>
-			<TouchableHighlight style={styles.toolbarAction}>
+			<TouchableHighlight
+				style={styles.toolbarAction}
+				onPress={() => onAdd()}
+			>
 				<Text style={styles.toolbarActionText}>New</Text>
 			</TouchableHighlight>
 			<TouchableHighlight
@@ -52,6 +61,17 @@ const TaskBar = ({ hasSelectedTasks, selectedTasksLength, deleteTask }) => {
 			</TouchableHighlight>
 		</View>
 	);
+};
+
+TaskBar.protoType = {
+	// Has a task been selected
+	hasSelectedTasks: PropTypes.bool.isRequired,
+	// How many tasks have been selected
+	hasSelectedTasksLength: PropTypes.number.isRequired,
+	// A function to delete a task
+	deleteTask: PropTypes.func.isRequired,
+	// A function that opens the modal when a new task is created
+	onOpen: PropTypes.func.isRequired,
 };
 
 export default TaskBar;

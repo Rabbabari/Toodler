@@ -1,10 +1,10 @@
 import React from "react";
-import { View, Text } from "react-native";
 import PropTypes from "prop-types";
 import NativeModal from "react-native-modal";
+import { View, Text } from "react-native";
 import styles from "./styles";
 
-const Modal = ({ isOpen, closeModal, title, children }) => (
+const TaskModal = ({ isOpen, closeModal, title, children }) => (
 	<NativeModal
 		isVisible={isOpen}
 		hasBackdrop={true}
@@ -20,7 +20,7 @@ const Modal = ({ isOpen, closeModal, title, children }) => (
 	</NativeModal>
 );
 
-Modal.propTypes = {
+TaskModal.propTypes = {
 	// Indicator that the Modal is open
 	isOpen: PropTypes.bool.isRequired,
 	// Function to close the Modal
@@ -31,4 +31,4 @@ Modal.propTypes = {
 	children: PropTypes.node,
 };
 
-export default Modal;
+export default TaskModal;
