@@ -21,17 +21,31 @@ const TaskListDisplay = () => {
 			return element.listId == listId;
 		})
 		.map((tasks) => tasks);
+	// AllTasks.forEach((task) => console.log(task));
+	// console.log("All tasks: " + AllTasks);
 
 	// All tasks within the application directory
-	const [tasks, setTask] = useState(AllTasks);
+	const [tasks, setTasks] = useState(AllTasks);
 	// All selected tasks
 	const [selectedTasks, setSelectedTasks] = useState([]);
 
-	const onTaskCheck = (id) => {
-		// If the task is not finished, change it to finished
-		// Else if the task is finished, change it to not finished
+	// Toggles isFinished between true and false
+	const checkTask = (id) => {
+		const updatedTasks = [...tasks];
+
+		const taskIndex = updatedTasks.findIndex((task) => task.id === id);
+		const taskToChange = updatedTasks[taskIndex];
+		if (taskIndex !== -1) {
+			if (taskToChange.isFinished) {
+				taskToChange.isFinished = false;
+			} else {
+				taskToChange.isFinished = true;
+			}
+		}
+		setTasks(updatedTasks);
 	};
 
+	// Adds a task to the array of selected tasks
 	const onLongPress = (id) => {
 		if (selectedTasks.indexOf(id) !== -1) {
 			// The task is already in the list
@@ -42,14 +56,59 @@ const TaskListDisplay = () => {
 		}
 	};
 
+	// Delete a task from the state
+	const deleteTask = () => {
+		// TODO figure out why it wont delete from the state permenantly
+		console.log("tasks");
+		tasks.forEach((task) => {
+			console.log(task);
+		});
+		const tasksCopy = [...tasks];
+		console.log("tasksCopy");
+		tasksCopy.forEach((task) => {
+			console.log(task);
+		});
+		const updatedTasks = tasksCopy.filter(
+			(task) => !selectedTasks.includes(task.id)
+		);
+		console.log("updated tasks");
+		updatedTasks.forEach((task) => {
+			console.log(task);
+		});
+		setTasks(updatedTasks);
+		setSelectedTasks([]);
+	};
+
+	const getListId = () => {
+		// Lets user pick a new list and returns the id of that list
+		return 1;
+	};
+
+	const moveTask = () => {
+		// Display all lists to chose which to move to
+		// change listId for selected tasks to the new list
+		const tasksCopy = [...tasks];
+		const tasksToMove = tasksCopy.filter(
+			(task) => !selectedTasks.includes(task.id)
+		);
+		const newListId = getListId();
+		tasksToMove.forEach((task) => {
+			task.listId = newListId;
+		});
+	};
 	return (
 		<View>
-			<TaskBar hasSelectedTasks={selectedTasks.length > 0} />
+			<TaskBar
+				hasSelectedTasks={selectedTasks.length > 0}
+				selectedTasksLength={selectedTasks.length}
+				deleteTask={() => deleteTask()}
+			/>
 			<TaskList
 				onCheck={(id) => onTaskCheck(id)}
 				onLongPress={(id) => onLongPress(id)}
 				tasks={tasks}
 				selectedTasks={selectedTasks}
+				checkTask={(id) => checkTask(id)}
 			/>
 		</View>
 	);

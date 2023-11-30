@@ -5,10 +5,15 @@ import { View, Text, TouchableOpacity, Image } from "react-native";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 import styles from "./styles";
 
-const Task = ({ task, onLongPress, isSelected, onCheck }) => {
+const Task = ({ task, onLongPress, isSelected, checkTask }) => {
 	return (
 		<View style={styles.listContainer}>
-			<BouncyCheckbox onPress={onCheck(task.id)} />
+			<BouncyCheckbox
+				onPress={() => checkTask(task.id)}
+				isChecked={task.isFinished}
+				disabled={isSelected}
+				style={{ opacity: isSelected ? 0.2 : 1 }}
+			/>
 			<TouchableOpacity onLongPress={() => onLongPress(task.id)}>
 				<View style={{ opacity: isSelected ? 0.2 : 1 }}>
 					<Text style={styles.taskName}>{task.name}</Text>

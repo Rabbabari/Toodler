@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { View, TouchableHighlight, Text } from "react-native";
 import styles from "./styles";
 
-const Toolbar = ({ hasSelectedLists, selectedLists, onAdd }) => {
+const Toolbar = ({ hasSelectedLists, selectedLists, onAdd, onDelete }) => {
 	const isOneListSelected = selectedLists.length === 1;
 	return (
 		<View styleName="horzontal" style={styles.toolbar}>
@@ -35,6 +35,7 @@ const Toolbar = ({ hasSelectedLists, selectedLists, onAdd }) => {
 					!hasSelectedLists ? { borderColor: "#949494" } : {},
 				]}
 				disabled={!hasSelectedLists}
+				onPress={onDelete}
 			>
 				<Text
 					style={[
