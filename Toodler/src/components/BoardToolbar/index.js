@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { View, TouchableOpacity, TouchableHighlight, Text } from "react-native";
 import styles from "./styles";
 
-const Toolbar = ({ hasSelectedBoards, onCreateBoard }) => {
+const Toolbar = ({ hasSelectedBoards, onCreateBoard, deleteBoard }) => {
 	return (
 		<View styleName="horzontal" style={styles.toolbar}>
 			<TouchableHighlight
@@ -12,24 +12,20 @@ const Toolbar = ({ hasSelectedBoards, onCreateBoard }) => {
 			>
 				<Text style={styles.toolbarActionText}>Create board</Text>
 			</TouchableHighlight>
-			<TouchableOpacity
+			<TouchableHighlight
 				style={styles.toolbarAction}
-				disabled={hasSelectedBoards}
-				underlayColor="transparent"
+				disabled={!hasSelectedBoards}
+				onPress={() => deleteBoard()}
 			>
 				<Text
 					style={[
-						!hasSelectedBoards
-							? {
-									color: "rgba(155, 155, 155, 0.5)",
-							  }
-							: {},
 						styles.toolbarActionText,
+						!hasSelectedBoards ? { color: "#949494" } : {},
 					]}
 				>
 					Delete board
 				</Text>
-			</TouchableOpacity>
+			</TouchableHighlight>
 		</View>
 	);
 };
@@ -38,6 +34,7 @@ Toolbar.propTypes = {
 	// Whether or not there are any selected boards
 	hasSelectedBoards: PropTypes.bool.isRequired,
 	onCreateBoard: PropTypes.func.isRequired,
+	deleteBoard: PropTypes.func.isRequired,
 };
 
 export default Toolbar;
