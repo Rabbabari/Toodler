@@ -1,11 +1,10 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { View, FlatList, Text, TouchableOpacity } from "react-native";
-import { AntDesign } from "@expo/vector-icons";
-import BouncyCheckbox from "react-native-bouncy-checkbox";
 import styles from "./styles";
 import Task from "../Task";
 
-const TaskList = ({ tasks, onLongPress, selectedTasks, checkTask }) => {
+const TaskList = ({ tasks, selectedTasks, onLongPress, checkTask }) => {
 	return (
 		<View>
 			<FlatList
@@ -25,6 +24,25 @@ const TaskList = ({ tasks, onLongPress, selectedTasks, checkTask }) => {
 			/>
 		</View>
 	);
+};
+
+TaskList.protoTypes = {
+	// An array of all tasks
+	tasks: PropTypes.arrayOf(
+		PropTypes.shape({
+			id: PropTypes.number,
+			name: PropTypes.string,
+			description: PropTypes.string,
+			isFinished: PropTypes.bool,
+			listId: PropTypes.number,
+		})
+	).isRequired,
+	// Array of the ids of the tasks that have been selected
+	selectedTasks: PropTypes.arrayOf(PropTypes.number),
+	// A function that is triggered on long press
+	onLongPress: PropTypes.func.isRequired,
+	// A function that is triggered when a task is checked off
+	checkTask: PropTypes.func.isRequired,
 };
 
 export default TaskList;

@@ -26,17 +26,21 @@ const Task = ({ task, onLongPress, isSelected, checkTask }) => {
 	);
 };
 
-// BoardThumbnail.propTypes = {
-// 	// The board's unique identifier
-// 	id: PropTypes.number.isRequired,
-// 	// The board's name
-// 	name: PropTypes.string.isRequired,
-// 	// The board's thumbnail photo represented by a URL
-// 	thumbnailPhoto: PropTypes.string.isRequired,
-// 	// Whether or not the board is selected
-// 	isSelected: PropTypes.bool.isRequired,
-// 	// When a board is long pressed
-// 	onLongPress: PropTypes.func.isRequired,
-// };
+Task.protoTypes = {
+	// A single task
+	task: PropTypes.shape({
+		id: PropTypes.number,
+		name: PropTypes.string,
+		description: PropTypes.string,
+		isFinished: PropTypes.bool,
+		listId: PropTypes.number,
+	}).isRequired,
+	// A funciton that is triggered on a long press
+	onLongPress: PropTypes.func.isRequired,
+	// Ìs the task selected or not
+	isSelected: PropTypes.bool.isRequired,
+	// A function that is triggered when a task is checked off
+	checkTask: PropTypes.func.isRequired,
+};
 
 export default Task;
