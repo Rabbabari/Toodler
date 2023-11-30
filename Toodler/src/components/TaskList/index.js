@@ -5,7 +5,7 @@ import BouncyCheckbox from "react-native-bouncy-checkbox";
 import styles from "./styles";
 import Task from "../Task";
 
-const TaskList = ({ tasks, onCheck, onLongPress, selectedTasks }) => {
+const TaskList = ({ tasks, onLongPress, selectedTasks, checkTask }) => {
 	return (
 		<View>
 			<FlatList
@@ -17,7 +17,7 @@ const TaskList = ({ tasks, onCheck, onLongPress, selectedTasks }) => {
 							task={item}
 							onLongPress={onLongPress}
 							isSelected={selectedTasks.indexOf(item.id) !== -1}
-							onCheck={(id) => onCheck(item.id)}
+							checkTask={checkTask}
 						/>
 					);
 				}}
