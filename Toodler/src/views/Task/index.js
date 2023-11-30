@@ -1,31 +1,27 @@
 import React, { useState } from "react";
 import { View, Text, TouchableHighlight, FlatList } from "react-native";
 import { useRoute } from "@react-navigation/native";
-import styles from "./styles";
 import TaskBar from "../../components/TaskBar";
 import TaskList from "../../components/TaskList";
 import TaskAddModal from "../../components/TaskAddModal";
-import data from "../../resources/data.json";
+import { useData } from "../../services/AppContext";
+import styles from "./styles";
+import TaskEditModal from "../../components/TaskEditModal";
 
 const TaskListDisplay = () => {
 	const route = useRoute();
 	const listId = route.params?.listId;
-	// A boolean flag to indicate if the modal is open or not
+	// A boolean flags to indicate if a modal is open or not
 	const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+	const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+
 	// All tasks, regardless of listId
-	const [allTasks, setAllTasks] = useState(data.tasks);
-
+	const { tasks, setTasks } = useData();
 	// All tasks filtered by lists
-	const filteredTasks = data.tasks
-		.filter(function (element) {
-			return element.listId == listId;
-		})
-		.map((tasks) => tasks);
-
-	// All tasks within the application directory
-	const [tasks, setTasks] = useState(filteredTasks);
+	const filteredTasks = tasks.filter((task) => task.listId === listId);
 	// All selected tasks
 	const [selectedTasks, setSelectedTasks] = useState([]);
+	const [editingTask, setEditingTask] = useState(null);
 
 	// Toggles isFinished between true and false
 	const checkTask = (id) => {
@@ -56,53 +52,45 @@ const TaskListDisplay = () => {
 
 	// Delete a task from the state
 	const deleteTask = () => {
-		// TODO figure out why it wont delete from the state permenantly
-		// console.log("tasks");
-		// tasks.forEach((task) => {
-		// 	console.log(task);
-		// });
 		const tasksCopy = [...tasks];
-		// console.log("tasksCopy");
-		// tasksCopy.forEach((task) => {
-		// 	console.log(task);
-		// });
 		const updatedTasks = tasksCopy.filter(
 			(task) => !selectedTasks.includes(task.id)
 		);
-		// console.log("updated tasks");
-		// updatedTasks.forEach((task) => {
-		// 	console.log(task);
-		// });
 		setTasks(updatedTasks);
 		setSelectedTasks([]);
 	};
+
 	const createNewTask = (name, description) => {
 		const newTask = {
-			id: Math.max(...allTasks.map((l) => l.id)) + 1,
+			id: Math.max(...tasks.map((l) => l.id)) + 1,
 			name: name,
 			description: description,
 			isFinished: false,
 			listId: listId,
 		};
-		setAllTasks([...allTasks, newTask]);
 		setTasks([...tasks, newTask]);
 	};
 
 	const moveTask = () => {
 		// TODO
+		// Move all selected tasks to another list
 		// Display all lists to chose which to move to
 		// change listId for selected tasks to the new list
-		const tasksCopy = [...tasks];
-		const tasksToMove = tasksCopy.filter(
-			(task) => !selectedTasks.includes(task.id)
-		);
-		const newListId = getListId();
-		tasksToMove.forEach((task) => {
-			task.listId = newListId;
-		});
 	};
+
+	const updateTask = (taskId) => {
+		// NOTE
+		// update the selected task
+	};
+
+	const editSelectedTask = () => {
+		const taskToEdit = tasks.find((list) => list.id === selectedTasks[0]);
+		setEditingTask(taskToEdit);
+		setIsEditModalOpen(true);
+	};
+
 	return (
-		<View style={{ flex: 1 }}>
+		<View>
 			<TaskBar
 				hasSelectedTasks={selectedTasks.length > 0}
 				selectedTasksLength={selectedTasks.length}
@@ -110,11 +98,13 @@ const TaskListDisplay = () => {
 				onAdd={() => {
 					setIsAddModalOpen(true);
 				}}
+				onMove={moveTask}
+				onUpdateTask={editSelectedTask}
 			/>
 			<TaskList
 				onCheck={(id) => onTaskCheck(id)}
 				onLongPress={(id) => onLongPress(id)}
-				tasks={tasks}
+				tasks={filteredTasks}
 				selectedTasks={selectedTasks}
 				checkTask={(id) => checkTask(id)}
 			/>
@@ -122,6 +112,12 @@ const TaskListDisplay = () => {
 				isOpen={isAddModalOpen}
 				closeModal={() => setIsAddModalOpen(false)}
 				createTask={createNewTask}
+			/>
+			<TaskEditModal
+				isOpen={isEditModalOpen}
+				closeModal={() => setIsEditModalOpen(false)}
+				task={editingTask}
+				updateTask={updateTask}
 			/>
 		</View>
 	);

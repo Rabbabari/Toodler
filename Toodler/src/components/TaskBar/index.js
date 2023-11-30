@@ -8,6 +8,8 @@ const TaskBar = ({
 	selectedTasksLength,
 	deleteTask,
 	onAdd,
+	onMove,
+	onUpdateTask,
 }) => {
 	const lenOne = selectedTasksLength === 1;
 	return (
@@ -21,6 +23,7 @@ const TaskBar = ({
 			<TouchableHighlight
 				style={styles.toolbarAction}
 				disabled={!hasSelectedTasks}
+				onPress={onMove()}
 			>
 				<Text
 					style={[
@@ -33,7 +36,11 @@ const TaskBar = ({
 					Move
 				</Text>
 			</TouchableHighlight>
-			<TouchableHighlight style={styles.toolbarAction} disabled={!lenOne}>
+			<TouchableHighlight
+				style={styles.toolbarAction}
+				disabled={!lenOne}
+				onPress={onUpdateTask}
+			>
 				<Text
 					style={[
 						styles.toolbarActionText,
@@ -72,6 +79,10 @@ TaskBar.protoType = {
 	deleteTask: PropTypes.func.isRequired,
 	// A function that opens the modal when a new task is created
 	onOpen: PropTypes.func.isRequired,
+	// A function that triggers when a task is to be moved
+	onMove: PropTypes.func.isRequired,
+	// A function that is triggered when tasks a is changed
+	onChange: PropTypes.func.isRequired,
 };
 
 export default TaskBar;

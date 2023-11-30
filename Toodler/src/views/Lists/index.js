@@ -76,14 +76,12 @@ const Lists = () => {
 				closeModal={() => setIsAddModalOpen(false)}
 				onAddNewList={onAddNewList}
 			/>
-			{editingList && (
-				<EditModal
-					isOpen={isEditModalOpen}
-					closeModal={() => setIsEditModalOpen(false)}
-					list={editingList}
-					onUpdateList={onUpdateList}
-				/>
-			)}
+			<EditModal
+				isOpen={isEditModalOpen}
+				closeModal={() => setIsEditModalOpen(false)}
+				list={editingList}
+				onUpdateList={onUpdateList}
+			/>
 		</View>
 	);
 };
