@@ -4,28 +4,26 @@ import { useRoute } from "@react-navigation/native";
 import styles from "./styles";
 import TaskBar from "../../components/TaskBar";
 import TaskList from "../../components/TaskList";
+import TaskAddModal from "../../components/TaskAddModal";
 import data from "../../resources/data.json";
-
-// TODO: some tasks are already marked as finished. figure out how to make them checked
-// Get all tasks
-
-// get tasks from the chosen list
 
 const TaskListDisplay = () => {
 	const route = useRoute();
 	const listId = route.params?.listId;
+	// A boolean flag to indicate if the modal is open or not
+	const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+	// All tasks, regardless of listId
+	const [allTasks, setAllTasks] = useState(data.tasks);
 
 	// All tasks filtered by lists
-	const AllTasks = data.tasks
+	const filteredTasks = data.tasks
 		.filter(function (element) {
 			return element.listId == listId;
 		})
 		.map((tasks) => tasks);
-	// AllTasks.forEach((task) => console.log(task));
-	// console.log("All tasks: " + AllTasks);
 
 	// All tasks within the application directory
-	const [tasks, setTasks] = useState(AllTasks);
+	const [tasks, setTasks] = useState(filteredTasks);
 	// All selected tasks
 	const [selectedTasks, setSelectedTasks] = useState([]);
 
@@ -59,32 +57,39 @@ const TaskListDisplay = () => {
 	// Delete a task from the state
 	const deleteTask = () => {
 		// TODO figure out why it wont delete from the state permenantly
-		console.log("tasks");
-		tasks.forEach((task) => {
-			console.log(task);
-		});
+		// console.log("tasks");
+		// tasks.forEach((task) => {
+		// 	console.log(task);
+		// });
 		const tasksCopy = [...tasks];
-		console.log("tasksCopy");
-		tasksCopy.forEach((task) => {
-			console.log(task);
-		});
+		// console.log("tasksCopy");
+		// tasksCopy.forEach((task) => {
+		// 	console.log(task);
+		// });
 		const updatedTasks = tasksCopy.filter(
 			(task) => !selectedTasks.includes(task.id)
 		);
-		console.log("updated tasks");
-		updatedTasks.forEach((task) => {
-			console.log(task);
-		});
+		// console.log("updated tasks");
+		// updatedTasks.forEach((task) => {
+		// 	console.log(task);
+		// });
 		setTasks(updatedTasks);
 		setSelectedTasks([]);
 	};
-
-	const getListId = () => {
-		// Lets user pick a new list and returns the id of that list
-		return 1;
+	const createNewTask = (name, description) => {
+		const newTask = {
+			id: Math.max(...allTasks.map((l) => l.id)) + 1,
+			name: name,
+			description: description,
+			isFinished: false,
+			listId: listId,
+		};
+		setAllTasks([...allTasks, newTask]);
+		setTasks([...tasks, newTask]);
 	};
 
 	const moveTask = () => {
+		// TODO
 		// Display all lists to chose which to move to
 		// change listId for selected tasks to the new list
 		const tasksCopy = [...tasks];
@@ -97,11 +102,14 @@ const TaskListDisplay = () => {
 		});
 	};
 	return (
-		<View>
+		<View style={{ flex: 1 }}>
 			<TaskBar
 				hasSelectedTasks={selectedTasks.length > 0}
 				selectedTasksLength={selectedTasks.length}
 				deleteTask={() => deleteTask()}
+				onAdd={() => {
+					setIsAddModalOpen(true);
+				}}
 			/>
 			<TaskList
 				onCheck={(id) => onTaskCheck(id)}
@@ -109,6 +117,11 @@ const TaskListDisplay = () => {
 				tasks={tasks}
 				selectedTasks={selectedTasks}
 				checkTask={(id) => checkTask(id)}
+			/>
+			<TaskAddModal
+				isOpen={isAddModalOpen}
+				closeModal={() => setIsAddModalOpen(false)}
+				createTask={createNewTask}
 			/>
 		</View>
 	);
