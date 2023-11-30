@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { View, Text } from "react-native";
-import Toolbar from "../../components/Toolbar";
+import Toolbar from "../../components/BoardToolbar";
 import BoardList from "../../components/BoardList";
 import CreateBoardModal from "../../components/BoardCreateModal";
 import data from "../../resources/data.json";
@@ -25,6 +25,24 @@ const Board = () => {
 		}
 	};
 
+	const deleteBoard = (selectedBoards) => {
+		selectedBoards.forEach((element) => {
+			//console.log(element);
+			const updatedBoards = boards.filter(
+				(board) => board.id !== element
+			);
+			setBoards(updatedBoards);
+			setSelectedBoard(updatedBoards);
+		});
+	};
+	console.log("selectedBoards");
+	console.log(selectedBoards);
+
+	const takePhoto = async () => {
+		const photo = await imageService.takePhoto();
+		console.log(photo);
+	};
+
 	//Adds the new board to the list of boards
 	const onAddNewBoard = (name, thumbnailPhoto) => {
 		console.log("I'm here");
@@ -41,6 +59,7 @@ const Board = () => {
 			<Toolbar
 				hasSelectedBoards={selectedBoards.length > 0}
 				onCreateBoard={() => setIsCreateModalOpen(true)}
+				deleteBoard={() => deleteBoard(selectedBoards)}
 				//onRemove={() => deleteBoards(selectedBoards)}
 			/>
 			<BoardList
