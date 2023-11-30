@@ -10,13 +10,11 @@ const Lists = () => {
 	const route = useRoute();
 	const boardId = route.params?.boardId;
 
-	// Finding all lists that belong to the board
-	const displayLists = data.lists.filter(
-		(lists) => lists.boardId === boardId
-	);
-
 	const [lists, setLists] = useState(data.lists);
 	const [selectedLists, setSelectedLists] = useState([]);
+	const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+
+	const displayLists = lists.filter((list) => list.boardId === boardId);
 
 	const onListLongPress = (id) => {
 		if (selectedLists.indexOf(id) != -1) {
@@ -36,12 +34,22 @@ const Lists = () => {
 		setLists([...lists, newList]);
 	};
 
+	const onDeleteSelectedLists = () => {
+		const newLists = lists.filter(
+			(list) => !selectedLists.includes(list.id)
+		);
+		setLists(newLists);
+		setSelectedLists([]);
+	};
+
+	console.log(lists);
 	return (
 		<View style={{ flex: 1 }}>
 			<Toolbar
 				onAdd={() => setIsAddModalOpen(true)}
 				hasSelectedLists={selectedLists.length > 0}
 				selectedLists={selectedLists}
+				onDelete={onDeleteSelectedLists}
 			/>
 			<ListofLists
 				onLongPress={(id) => onListLongPress(id)}
