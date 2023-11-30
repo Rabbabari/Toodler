@@ -10,7 +10,7 @@ const Board = () => {
 	const [boards, setBoards] = useState(data.boards);
 	// All selected boards
 	const [selectedBoards, setSelectedBoard] = useState([]);
-
+	// A boolean flag to indicate if the modal to create a board is open or not
 	const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
 
 	const onBoardLongPress = (boardID) => {
@@ -25,32 +25,36 @@ const Board = () => {
 		}
 	};
 
-	// const deleteBoards = async () => {
-	// 	setLoadingBoards(true);
-
-	// 	setBoards(boards.filter((board) => !boardIDs.includes(board.id)));
-	// 	setSelectedBoard([]);
-
-	// 	setLoadingBoards(false);
-	// };
+	//Adds the new board to the list of boards
+	const onAddNewBoard = (name, thumbnailPhoto) => {
+		console.log("I'm here");
+		const newBoard = {
+			id: Math.max(...boards.map((b) => b.id)) + 1,
+			name,
+			thumbnailPhoto,
+		};
+		setBoards([...boards, newBoard]);
+	};
 
 	return (
 		<View>
 			<Toolbar
 				hasSelectedBoards={selectedBoards.length > 0}
-				onCreate={() => setIsCreateModalOpen(true)}
+				onCreateBoard={() => setIsCreateModalOpen(true)}
 				//onRemove={() => deleteBoards(selectedBoards)}
 			/>
 			<BoardList
 				onLongPress={(id) => onBoardLongPress(id)}
 				selectedBoard={selectedBoards}
-				boards={data.boards}
+				boards={boards}
 			/>
 			<CreateBoardModal
 				isOpen={isCreateModalOpen}
 				closeModal={() => setIsCreateModalOpen(false)}
-				createBoard={() => {}}
+				onCreateBoard={() => {}}
+				takePhoto={() => {}}
 				selectFromCameraRoll={() => {}}
+				onAddNewBoard={onAddNewBoard}
 			/>
 		</View>
 	);

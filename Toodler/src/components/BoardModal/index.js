@@ -10,7 +10,7 @@ const Modal = ({ isOpen, closeModal, title, children }) => (
 		hasBackdrop={true}
 		onBackButtonPress={closeModal}
 		onSwipeComplete={closeModal}
-		svipeDirection={["up", "down"]}
+		swipeDirection={["up", "down"]}
 		style={styles.modal}
 	>
 		<View style={styles.body}>
