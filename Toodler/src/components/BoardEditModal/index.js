@@ -69,7 +69,7 @@ BoardEditModal.propTypes = {
 	// Function to close the Modal
 	closeModal: PropTypes.func.isRequired,
 	// A board to be updated
-	board: PropTypes.object.isRequired,
+	board: PropTypes.object,
 	// Function to update a board
 	updateBoard: PropTypes.func.isRequired,
 };
