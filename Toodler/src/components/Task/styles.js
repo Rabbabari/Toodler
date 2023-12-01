@@ -1,13 +1,13 @@
 import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
-	listContainer: {
+	button: {
 		flex: 1,
 		flexDirection: "row",
 		alignItems: "flex-start",
 		// justifyContent: "space-between",
 		// flexWrap: "wrap",
-		maxWidth: "80%",
+		maxWidth: "100%",
 		padding: 10,
 		marginTop: 10,
 		marginLeft: 5,
