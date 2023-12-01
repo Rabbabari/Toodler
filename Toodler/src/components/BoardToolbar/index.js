@@ -24,36 +24,22 @@ const Toolbar = ({
 			<TouchableHighlight
 				style={[
 					styles.toolbarAction,
-					!isOneBoardSelected ? { borderColor: "#949494" } : {},
+					!isOneBoardSelected ? { backgroundColor: "#ff8da0" } : {},
 				]}
 				disabled={!hasSelectedBoards}
 				onPress={editBoard}
 			>
-				<Text
-					style={[
-						styles.toolbarActionText,
-						!isOneBoardSelected ? { color: "#949494" } : {},
-					]}
-				>
-					Edit
-				</Text>
+				<Text style={styles.toolbarActionText}>Edit</Text>
 			</TouchableHighlight>
 			<TouchableHighlight
 				style={[
 					styles.toolbarAction,
-					!hasSelectedBoards ? { borderColor: "#949494" } : {},
+					!hasSelectedBoards ? { backgroundColor: "#ff8da0" } : {},
 				]}
 				disabled={!hasSelectedBoards}
 				onPress={() => deleteBoard()}
 			>
-				<Text
-					style={[
-						styles.toolbarActionText,
-						!hasSelectedBoards ? { color: "#949494" } : {},
-					]}
-				>
-					Delete
-				</Text>
+				<Text style={styles.toolbarActionText}>Delete</Text>
 			</TouchableHighlight>
 		</View>
 	);

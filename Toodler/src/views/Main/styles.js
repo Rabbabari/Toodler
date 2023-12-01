@@ -11,8 +11,8 @@ export default StyleSheet.create({
 		backgroundColor: pink,
 	},
 	logo: {
-		width: 300,
-		height: 300,
+		width: 350,
+		height: 350,
 	},
 	button: {
 		backgroundColor: "white",
@@ -20,12 +20,23 @@ export default StyleSheet.create({
 		paddingBottom: 20,
 		paddingLeft: 40,
 		paddingRight: 40,
-		borderWidth: 3,
+		borderWidth: 0,
 		borderColor: "black",
-		borderRadius: 5,
+		borderRadius: 24,
+		width: 300,
+		height: 80,
+		shadowColor: "#000",
+		shadowOffset: {
+			width: 7,
+			height: 7,
+		},
+		shadowOpacity: 0.3,
+		shadowRadius: 3.84,
+		elevation: 5,
 	},
 	buttonText: {
 		fontSize: 30,
 		fontWeight: "bold",
+		textAlign: "center",
 	},
 });

@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { View, Text, TouchableHighlight, Image, Alert } from "react-native";
+import {
+	View,
+	Text,
+	TouchableHighlight,
+	TouchableOpacity,
+	Image,
+	Alert,
+} from "react-native";
 import { useData } from "../../services/AppContext";
 import { useNavigation } from "@react-navigation/native";
 import logo from "../../resources/logo.png";
@@ -32,22 +39,21 @@ const Main = ({ navigation: { navigate } }) => {
 		setSearchModalVisible(false);
 	};
 
-	//console.log("Main");
 	return (
 		<View style={styles.container}>
 			<Image source={logo} style={styles.logo} />
-			<TouchableHighlight
+			<TouchableOpacity
 				onPress={() => navigate("Board")}
 				style={styles.button}
 			>
 				<Text style={styles.buttonText}>View boards</Text>
-			</TouchableHighlight>
-			<TouchableHighlight
+			</TouchableOpacity>
+			<TouchableOpacity
 				onPress={() => setSearchModalVisible(true)}
 				style={styles.button}
 			>
 				<Text style={styles.buttonText}>Search list</Text>
-			</TouchableHighlight>
+			</TouchableOpacity>
 
 			{/* Search Modal */}
 			<SearchModal

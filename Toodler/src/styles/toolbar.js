@@ -6,7 +6,7 @@ export default StyleSheet.create({
 		alignItems: "center",
 		justifyContent: "center",
 		height: 100,
-		backgroundColor: "#dfd5cd",
+		backgroundColor: "white",
 	},
 	toolbarAction: {
 		flex: 1,
@@ -15,14 +15,13 @@ export default StyleSheet.create({
 		padding: 10,
 		marginVertical: 10,
 		marginHorizontal: 5,
-		borderWidth: 2,
+		borderRadius: 10,
 		borderColor: "black",
-		borderRadius: 5,
-		backgroundColor: "white",
+		backgroundColor: "#ff667a",
 	},
 	toolbarActionText: {
 		fontSize: 17,
 		fontWeight: "bold",
-		color: "black",
+		color: "white",
 	},
 });

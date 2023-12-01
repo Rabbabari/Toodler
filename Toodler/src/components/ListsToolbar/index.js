@@ -29,36 +29,22 @@ const Toolbar = ({
 			<TouchableHighlight
 				style={[
 					styles.toolbarAction,
-					!isOneListSelected ? { borderColor: "#949494" } : {},
+					!isOneListSelected ? { backgroundColor: "#ff8da0" } : {},
 				]}
 				disabled={!isOneListSelected}
 				onPress={onEdit}
 			>
-				<Text
-					style={[
-						styles.toolbarActionText,
-						!isOneListSelected ? { color: "#949494" } : {},
-					]}
-				>
-					Edit
-				</Text>
+				<Text style={styles.toolbarActionText}>Edit</Text>
 			</TouchableHighlight>
 			<TouchableHighlight
 				style={[
 					styles.toolbarAction,
-					!hasSelectedLists ? { borderColor: "#949494" } : {},
+					!hasSelectedLists ? { backgroundColor: "#ff8da0" } : {},
 				]}
 				disabled={!hasSelectedLists}
 				onPress={onDelete}
 			>
-				<Text
-					style={[
-						styles.toolbarActionText,
-						!hasSelectedLists ? { color: "#949494" } : {},
-					]}
-				>
-					Delete
-				</Text>
+				<Text style={styles.toolbarActionText}>Delete</Text>
 			</TouchableHighlight>
 		</View>
 	);

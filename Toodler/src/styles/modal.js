@@ -15,7 +15,7 @@ export default StyleSheet.create({
 		flexGrow: 0.4,
 		borderRadius: 10,
 		width: winWidth - 100,
-		backgroundColor: "#f2e9e1",
+		backgroundColor: "white",
 		padding: 40,
 	},
 	textInput: {

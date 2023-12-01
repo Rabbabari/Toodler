@@ -7,6 +7,6 @@ export default StyleSheet.create({
 		flexDirection: "row",
 		//justifyContent: "space-between",
 		padding: 10,
-		backgroundColor: "#f2e9e1",
+		backgroundColor: "white",
 	},
 });

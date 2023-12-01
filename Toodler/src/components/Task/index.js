@@ -11,7 +11,7 @@ const Task = ({ task, onLongPress, isSelected, checkTask }) => {
 		<TouchableOpacity
 			style={[
 				styles.button,
-				{ backgroundColor: isSelected ? "#f2e9e1" : "#f2e9e1" },
+				{ backgroundColor: isSelected ? "white" : "white" },
 			]}
 			onLongPress={() => onLongPress(task.id)}
 		>

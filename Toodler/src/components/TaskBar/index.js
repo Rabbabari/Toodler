@@ -20,53 +20,32 @@ const TaskBar = ({
 			<TouchableHighlight
 				style={[
 					styles.toolbarAction,
-					!hasSelectedTasks ? { borderColor: "#949494" } : {},
+					!hasSelectedTasks ? { backgroundColor: "#ff8da0" } : {},
 				]}
 				disabled={!hasSelectedTasks}
 				onPress={onMove}
 			>
-				<Text
-					style={[
-						styles.toolbarActionText,
-						!hasSelectedTasks ? { color: "#949494" } : {},
-					]}
-				>
-					Move
-				</Text>
+				<Text style={styles.toolbarActionText}>Move</Text>
 			</TouchableHighlight>
 			<TouchableHighlight
 				style={[
 					styles.toolbarAction,
-					!hasSelectedTasks ? { borderColor: "#949494" } : {},
+					!hasSelectedTasks ? { backgroundColor: "#ff8da0" } : {},
 				]}
 				disabled={!lenOne}
 				onPress={onUpdateTask}
 			>
-				<Text
-					style={[
-						styles.toolbarActionText,
-						!lenOne ? { color: "#949494" } : {},
-					]}
-				>
-					Edit
-				</Text>
+				<Text style={styles.toolbarActionText}>Edit</Text>
 			</TouchableHighlight>
 			<TouchableHighlight
 				style={[
 					styles.toolbarAction,
-					!hasSelectedTasks ? { borderColor: "#949494" } : {},
+					!hasSelectedTasks ? { backgroundColor: "#ff8da0" } : {},
 				]}
 				onPress={deleteTask}
 				disabled={!hasSelectedTasks}
 			>
-				<Text
-					style={[
-						styles.toolbarActionText,
-						!hasSelectedTasks ? { color: "#949494" } : {},
-					]}
-				>
-					Delete
-				</Text>
+				<Text style={styles.toolbarActionText}>Delete</Text>
 			</TouchableHighlight>
 		</View>
 	);

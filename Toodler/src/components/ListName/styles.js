@@ -16,9 +16,15 @@ export default StyleSheet.create({
 		marginRight: 40,
 		paddingLeft: 20,
 		paddingRight: 20,
-		borderWidth: 2,
 		borderColor: "black",
-		borderRadius: 5,
+		borderRadius: 10,
+		shadowOffset: {
+			width: 7,
+			height: 7,
+		},
+		shadowOpacity: 0.2,
+		shadowRadius: 10,
+		elevation: 5,
 	},
 	checkmark: {
 		position: "absolute",
