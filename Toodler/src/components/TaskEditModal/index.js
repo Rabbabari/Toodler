@@ -55,7 +55,7 @@ TaskEditModal.propTypes = {
 	// Function to close the Modal
 	closeModal: PropTypes.func.isRequired,
 	// A task to be updated
-	task: PropTypes.object.isRequired,
+	task: PropTypes.object,
 	// Function to update a task
 	updateTask: PropTypes.func.isRequired,
 };
