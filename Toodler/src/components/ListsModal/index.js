@@ -3,7 +3,7 @@ import React from "react";
 import PropTypes from "prop-types"; // For prop type validation
 import NativeModal from "react-native-modal"; // Importing modal component from react-native-modal
 import { View, Text } from "react-native"; // Importing components from react-native
-import styles from "./styles"; // Importing custom styles for the modal
+import styles from "../../styles/modal"; // Importing custom styles for the modal
 
 // Modal component definition
 const Modal = ({ isOpen, closeModal, title, children }) => (

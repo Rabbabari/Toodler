@@ -3,8 +3,8 @@ import { TouchableOpacity, Text, View } from "react-native";
 // import { Picker } from "@react-native-picker/picker";
 import DropDownPicker from "react-native-dropdown-picker";
 import Modal from "../TaskModal";
-import styles from "./styles";
 import { useData } from "../../services/AppContext";
+import styles from "../../styles/modal";
 
 const TaskMoveModal = ({ isOpen, closeModal, moveTask }) => {
 	const [open, setOpen] = useState(false);
