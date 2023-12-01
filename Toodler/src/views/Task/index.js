@@ -4,9 +4,10 @@ import { useRoute } from "@react-navigation/native";
 import TaskBar from "../../components/TaskBar";
 import TaskList from "../../components/TaskList";
 import TaskAddModal from "../../components/TaskAddModal";
+import TaskEditModal from "../../components/TaskEditModal";
+import TaskMoveModal from "../../components/TaskMoveModal";
 import { useData } from "../../services/AppContext";
 import styles from "./styles";
-import TaskEditModal from "../../components/TaskEditModal";
 
 const TaskListDisplay = () => {
 	const route = useRoute();
@@ -14,6 +15,7 @@ const TaskListDisplay = () => {
 	// A boolean flags to indicate if a modal is open or not
 	const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 	const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+	const [isMoveModalOpen, setIsMoveModalOpen] = useState(false);
 
 	// All tasks, regardless of listId
 	const { tasks, setTasks } = useData();
@@ -21,6 +23,7 @@ const TaskListDisplay = () => {
 	const filteredTasks = tasks.filter((task) => task.listId === listId);
 	// All selected tasks
 	const [selectedTasks, setSelectedTasks] = useState([]);
+	const [tasksToMove, setTasksToMove] = useState([]);
 	const [editingTask, setEditingTask] = useState(null);
 
 	// Toggles isFinished between true and false
@@ -71,22 +74,40 @@ const TaskListDisplay = () => {
 		setTasks([...tasks, newTask]);
 	};
 
-	const moveTask = () => {
-		// TODO
-		// Move all selected tasks to another list
-		// Display all lists to chose which to move to
-		// change listId for selected tasks to the new list
-	};
-
 	const updateTask = (taskId) => {
-		// NOTE
+		// TODO why does this functionality work when there is no code here?
 		// update the selected task
+		// tasks.forEach((task) => {
+		// 	console.log(task.name);
+		// });
 	};
 
 	const editSelectedTask = () => {
 		const taskToEdit = tasks.find((list) => list.id === selectedTasks[0]);
 		setEditingTask(taskToEdit);
 		setIsEditModalOpen(true);
+	};
+
+	const moveSelectedTasks = () => {
+		const taskCopy = [...tasks];
+		// console.log("button works?");
+		const filteredMoveTasks = taskCopy.filter((task) =>
+			selectedTasks.includes(task.id)
+		);
+		setTasksToMove(filteredMoveTasks);
+		setIsMoveModalOpen(true);
+
+		// tasksToMove.forEach((task) => {
+		// 	console.log(task.name);
+		// });
+	};
+
+	const moveTask = () => {
+		// NOTE. button works
+		// TODO
+		// Move all selected tasks to another list
+		// Display all lists to chose which to move to
+		// change listId for selected tasks to the new list
 	};
 
 	return (
@@ -98,7 +119,7 @@ const TaskListDisplay = () => {
 				onAdd={() => {
 					setIsAddModalOpen(true);
 				}}
-				onMove={moveTask}
+				onMove={moveSelectedTasks}
 				onUpdateTask={editSelectedTask}
 			/>
 			<TaskList
@@ -118,6 +139,10 @@ const TaskListDisplay = () => {
 				closeModal={() => setIsEditModalOpen(false)}
 				task={editingTask}
 				updateTask={updateTask}
+			/>
+			<TaskMoveModal
+				isOpen={isMoveModalOpen}
+				closeModal={() => setIsMoveModalOpen(false)}
 			/>
 		</View>
 	);
