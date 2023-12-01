@@ -23,14 +23,12 @@ const EditModal = ({ isOpen, closeModal, list, onUpdateList }) => {
 	// Array of color options for the list
 	const colorOptions = [
 		// List of color codes
-		"#a8c7b7",
-		"#9e9cc8",
-		"#fce99c",
-		"#7ba7b5",
-		"#eed495",
-		"#c9b2d1",
-		"#88bdbf",
-		"#cca9b6",
+		"#A5A5F7",
+		"#9CE7FF",
+		"#7BEFB5",
+		"#FFEF8C",
+		"#FFCE9C",
+		"#FFA5D6",
 	];
 
 	// Function to handle the submission of the edited list
