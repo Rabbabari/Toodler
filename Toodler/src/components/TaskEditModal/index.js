@@ -19,10 +19,7 @@ const TaskEditModal = ({ isOpen, closeModal, task, updateTask }) => {
 		if (!name.trim() || !description.trim()) {
 			Alert.alert("Error", "Please enter a name and description");
 		} else {
-			// TODO move functionality to the view
-			task.name = name;
-			task.description = description;
-			updateTask(task);
+			updateTask(name, description);
 			closeModal();
 		}
 	};

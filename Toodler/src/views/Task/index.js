@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useLayoutEffect } from "react";
 import { View, Text, TouchableHighlight, FlatList } from "react-native";
-import { useRoute } from "@react-navigation/native";
+import { useRoute, useNavigation } from "@react-navigation/native";
 import TaskBar from "../../components/TaskBar";
 import TaskList from "../../components/TaskList";
 import TaskAddModal from "../../components/TaskAddModal";
@@ -12,6 +12,7 @@ import styles from "./styles";
 const TaskListDisplay = () => {
 	const route = useRoute();
 	const listId = route.params?.listId;
+	const listName = route.params?.listName;
 	// A boolean flags to indicate if a modal is open or not
 	const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 	const [isEditModalOpen, setIsEditModalOpen] = useState(false);
@@ -26,6 +27,13 @@ const TaskListDisplay = () => {
 	const [tasksToMove, setTasksToMove] = useState([]);
 	const [editingTask, setEditingTask] = useState(null);
 
+	const navigation = useNavigation();
+
+	useLayoutEffect(() => {
+		if (listName) {
+			navigation.setOptions({ title: listName });
+		}
+	}, [listName, navigation]);
 	// Toggles isFinished between true and false
 	const checkTask = (id) => {
 		const updatedTasks = [...tasks];
@@ -74,12 +82,9 @@ const TaskListDisplay = () => {
 		setTasks([...tasks, newTask]);
 	};
 
-	const updateTask = (taskId) => {
-		// TODO why does this functionality work when there is no code here?
-		// update the selected task
-		// tasks.forEach((task) => {
-		// 	console.log(task.name);
-		// });
+	const updateTask = (newName, newDescription) => {
+		editingTask.name = newName;
+		editingTask.description = newDescription;
 	};
 
 	const editSelectedTask = () => {
@@ -90,27 +95,25 @@ const TaskListDisplay = () => {
 
 	const moveSelectedTasks = () => {
 		const taskCopy = [...tasks];
-		// console.log("button works?");
 		const filteredMoveTasks = taskCopy.filter((task) =>
 			selectedTasks.includes(task.id)
 		);
 		setTasksToMove(filteredMoveTasks);
 		setIsMoveModalOpen(true);
-
-		// tasksToMove.forEach((task) => {
-		// 	console.log(task.name);
-		// });
 	};
 
 	const moveTask = (newListId) => {
-		// NOTE. button works
-		// TODO
 		// Move all selected tasks to another list
 		// Display all lists to chose which to move to
 		// change listId for selected tasks to the new list
-		selectedTasks.forEach((task) => {
-			task.listId = newListId;
+
+		const updatedTasks = [...tasks].map((task) => {
+			if (selectedTasks.includes(task.id)) {
+				return { ...task, listId: newListId };
+			}
+			return task;
 		});
+		setTasks(updatedTasks);
 	};
 
 	return (
