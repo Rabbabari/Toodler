@@ -15,9 +15,10 @@ export const addImage = async (imageLocation) => {
 	await copyFile(imageLocation, `${imageDirectory}/${fileName}`);
 
 	return {
+		name: fileName,
 		type: "image",
 		uri: await loadImage(fileName),
 	};
 };
 
-const loadImage = async (fileName) => {};
+

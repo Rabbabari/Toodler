@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
+import * as ImagePicker from "expo-image-picker";
 import { Entypo } from "@expo/vector-icons";
 import { TouchableOpacity, View, Text, TextInput, Alert } from "react-native";
 import Modal from "../Modal";
@@ -10,9 +11,23 @@ const BoardEditModal = ({ isOpen, closeModal, board, updateBoard }) => {
 	const [thumbnailPhoto, setThumbnailPhoto] = useState("");
 	const [description, setDescription] = useState("");
 
+	const selectFromCameraRoll = async () => {
+		const permissionResult =
+			await ImagePicker.requestMediaLibraryPermissionsAsync();
+
+		if (permissionResult.granted === false) {
+			alert("Permission to access camera roll is required!");
+			return;
+		}
+		const pickerResult = await ImagePicker.launchImageLibraryAsync();
+		if (pickerResult.canceled === true) {
+			return;
+		}
+		setThumbnailPhoto(pickerResult.assets[0].uri);
+	};
+
 	useEffect(() => {
 		if (board) {
-			console.log(board);
 			setName(board.name);
 			setThumbnailPhoto(board.thumbnailPhoto);
 			setDescription(board.description);
@@ -53,6 +68,7 @@ const BoardEditModal = ({ isOpen, closeModal, board, updateBoard }) => {
 						name="image"
 						size={24}
 						color="black"
+						value={thumbnailPhoto}
 					/>
 				</TouchableOpacity>
 				<TouchableOpacity style={styles.button} onPress={handleSubmit}>
