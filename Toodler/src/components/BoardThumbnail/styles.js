@@ -13,9 +13,15 @@ export default StyleSheet.create({
 		right: 15,
 		fontSize: 16,
 	},
-	text: {
+	textName: {
 		fontSize: 16,
-		fontWeight: "bold",
 		textAlign: "center",
+		flexWrap: "wrap",
+	},
+	textDescription: {
+		width: 100,
+		fontSize: 16,
+		textAlign: "center",
+		flexWrap: "wrap",
 	},
 });

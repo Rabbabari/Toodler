@@ -5,6 +5,7 @@ import { Entypo } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native";
 import Modal from "../BoardModal";
 import styles from "./styles";
+import BoardEditModal from "../BoardEditModal";
 
 const CreateBoardModal = ({
 	isOpen,
@@ -15,16 +16,18 @@ const CreateBoardModal = ({
 	onAddNewBoard,
 }) => {
 	const [boardName, setBoardName] = useState("");
+	const [boardDescription, setBoardDescription] = useState("");
 	const [thumbnailPhoto, setThumbnailPhoto] = useState("");
 	const [error, setError] = useState(false);
 
 	const handleBoardSubmit = () => {
-		if (!boardName.trim()) {
+		if (!boardName.trim() || !boardDescription.trim()) {
 			setError(true);
 			Alert.alert("Error", "Please enter a board name");
 		} else {
-			onAddNewBoard(boardName, thumbnailPhoto);
+			onAddNewBoard(boardName, boardDescription, thumbnailPhoto);
 			setBoardName("");
+			setBoardDescription("");
 			setThumbnailPhoto("");
 			setError(false);
 			closeModal();
@@ -40,6 +43,14 @@ const CreateBoardModal = ({
 					onChangeText={setBoardName}
 				/>
 			</TouchableOpacity>
+			<TouchableOpacity>
+				<TextInput
+					style={styles.textInput}
+					placeholder="Enter Board Description"
+					value={boardDescription}
+					onChangeText={setBoardDescription}
+				/>
+			</TouchableOpacity>
 
 			<TouchableOpacity onPress={() => selectFromCameraRoll()}>
 				<Entypo
@@ -50,14 +61,14 @@ const CreateBoardModal = ({
 				/>
 			</TouchableOpacity>
 
-			<TouchableOpacity onPress={() => takePhoto()}>
+			{/* <TouchableOpacity onPress={() => takePhoto()}>
 				<Entypo
 					style={styles.icon}
 					name="camera"
 					size={24}
 					color="black"
 				/>
-			</TouchableOpacity>
+			</TouchableOpacity> */}
 
 			<TouchableOpacity style={styles.submit} onPress={handleBoardSubmit}>
 				<Text style={styles.text}>Create Board</Text>

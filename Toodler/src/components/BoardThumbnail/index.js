@@ -6,7 +6,14 @@ import { View, Text, TouchableOpacity, Image } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import styles from "./styles";
 
-const BoardThumbnail = ({ id, name, URL, onLongPress, isSelected }) => {
+const BoardThumbnail = ({
+	id,
+	name,
+	description,
+	URL,
+	onLongPress,
+	isSelected,
+}) => {
 	const { navigate } = useNavigation();
 
 	return (
@@ -24,7 +31,8 @@ const BoardThumbnail = ({ id, name, URL, onLongPress, isSelected }) => {
 					resizeMode="cover"
 					source={{ uri: URL }}
 				/>
-				<Text style={styles.text}>{name}</Text>
+				<Text style={styles.textName}>{name}</Text>
+				<Text style={styles.textDescription}>{description}</Text>
 			</View>
 		</TouchableOpacity>
 	);
