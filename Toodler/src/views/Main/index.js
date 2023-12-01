@@ -1,9 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, Text, TouchableHighlight, Image } from "react-native";
+import { useData } from "../../services/AppContext";
+import { useNavigation } from "@react-navigation/native";
 import logo from "../../resources/logo.png";
 import styles from "./styles";
+import SearchModal from "../../components/MainSearchModal";
 
 const Main = ({ navigation: { navigate } }) => {
+	const [isSearchModalVisible, setSearchModalVisible] = useState(false);
+
+	const { lists } = useData(); // Access the lists from your data context
+	const navigation = useNavigation();
+
+	const handleSearch = (query) => {
+		// Find the list that matches the search query
+		const foundList = lists.find(
+			(list) => list.name.toLowerCase() === query.toLowerCase()
+		);
+
+		if (foundList) {
+			// Navigate to the list screen with the found list's details
+			navigation.navigate("Tasks", {
+				listId: foundList.id,
+				listName: foundList.name,
+			});
+		} else {
+			// Handle case where no list is found
+			Alert.alert("List not found", "Please try a different name");
+		}
+
+		setSearchModalVisible(false);
+	};
+
 	//console.log("Main");
 	return (
 		<View style={styles.container}>
@@ -14,6 +42,19 @@ const Main = ({ navigation: { navigate } }) => {
 			>
 				<Text style={styles.buttonText}>View boards</Text>
 			</TouchableHighlight>
+			<TouchableHighlight
+				onPress={() => setSearchModalVisible(true)}
+				style={styles.button}
+			>
+				<Text style={styles.buttonText}>Search list</Text>
+			</TouchableHighlight>
+
+			{/* Search Modal */}
+			<SearchModal
+				isOpen={isSearchModalVisible}
+				closeModal={() => setSearchModalVisible(false)}
+				onSearch={handleSearch}
+			/>
 		</View>
 	);
 };
