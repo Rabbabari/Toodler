@@ -12,7 +12,6 @@ const BoardEditModal = ({ isOpen, closeModal, board, updateBoard }) => {
 
 	useEffect(() => {
 		if (board) {
-			console.log(board);
 			setName(board.name);
 			setThumbnailPhoto(board.thumbnailPhoto);
 			setDescription(board.description);

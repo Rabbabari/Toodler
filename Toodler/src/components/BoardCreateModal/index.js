@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import * as ImagePicker from "expo-image-picker";
 import { Text, TextInput, Alert } from "react-native";
 import PropTypes from "prop-types";
 import { Entypo } from "@expo/vector-icons";
@@ -11,13 +12,27 @@ const CreateBoardModal = ({
 	isOpen,
 	closeModal,
 	onCreateBoard,
-	selectFromCameraRoll,
 	onAddNewBoard,
 }) => {
 	const [boardName, setBoardName] = useState("");
 	const [boardDescription, setBoardDescription] = useState("");
 	const [thumbnailPhoto, setThumbnailPhoto] = useState("");
 	const [error, setError] = useState(false);
+
+	const selectFromCameraRoll = async () => {
+		const permissionResult =
+			await ImagePicker.requestMediaLibraryPermissionsAsync();
+
+		if (permissionResult.granted === false) {
+			alert("Permission to access camera roll is required!");
+			return;
+		}
+		const pickerResult = await ImagePicker.launchImageLibraryAsync();
+		if (pickerResult.canceled === true) {
+			return;
+		}
+		setThumbnailPhoto(pickerResult.assets[0].uri);
+	};
 
 	const handleBoardSubmit = () => {
 		if (!boardName.trim() || !boardDescription.trim()) {
@@ -43,15 +58,6 @@ const CreateBoardModal = ({
 				/>
 			</TouchableOpacity>
 
-			<TouchableOpacity onPress={() => selectFromCameraRoll()}>
-				<Entypo
-					style={styles.icon}
-					name="image"
-					size={24}
-					color="black"
-				/>
-			</TouchableOpacity>
-
 			<TouchableOpacity>
 				<TextInput
 					style={styles.textInput}
@@ -61,14 +67,15 @@ const CreateBoardModal = ({
 				/>
 			</TouchableOpacity>
 
-			{/* <TouchableOpacity onPress={() => takePhoto()}>
+			<TouchableOpacity onPress={() => selectFromCameraRoll()}>
 				<Entypo
 					style={styles.icon}
-					name="camera"
+					name="image"
 					size={24}
 					color="black"
+					value={thumbnailPhoto}
 				/>
-			</TouchableOpacity> */}
+			</TouchableOpacity>
 
 			<TouchableOpacity style={styles.submit} onPress={handleBoardSubmit}>
 				<Text style={styles.text}>Create Board</Text>
