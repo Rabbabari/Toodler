@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { View, TextInput, TouchableOpacity, Text, Alert } from "react-native";
 import { AntDesign } from "@expo/vector-icons"; // Importing icon from Expo's vector icons
 import PropTypes from "prop-types"; // For prop type validation
-import Modal from "../ListsModal"; // Importing custom modal component
+import Modal from "../Modal"; // Importing custom modal component
 import styles from "../../styles/modal"; // Importing custom styles
 
 // AddModal component definition
