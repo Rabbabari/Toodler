@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { TouchableOpacity, View, Text, TextInput, Alert } from "react-native";
 import Modal from "../TaskModal";
-import styles from "./styles";
+import styles from "../../styles/modal";
 
 const TaskAddModal = ({ isOpen, closeModal, createTask }) => {
 	const [name, setName] = useState("");
@@ -24,14 +24,15 @@ const TaskAddModal = ({ isOpen, closeModal, createTask }) => {
 
 	return (
 		<Modal isOpen={isOpen} closeModal={closeModal}>
-			<Text style={styles.text}>Choose name</Text>
 			<View style={styles.formContainer}>
+				<Text style={styles.text}>Name</Text>
 				<TextInput
 					style={styles.textInput}
 					placeholder="Task name"
 					value={name}
 					onChangeText={setName}
 				/>
+				<Text style={styles.text}>Description</Text>
 				<TextInput
 					style={styles.textInput}
 					placeholder="Task description"

@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { View, TouchableHighlight, Text } from "react-native";
-import styles from "./styles";
+import styles from "../../styles/toolbar";
 
 const TaskBar = ({
 	hasSelectedTasks,
@@ -18,46 +18,51 @@ const TaskBar = ({
 				<Text style={styles.toolbarActionText}>New</Text>
 			</TouchableHighlight>
 			<TouchableHighlight
-				style={styles.toolbarAction}
+				style={[
+					styles.toolbarAction,
+					!hasSelectedTasks ? { borderColor: "#949494" } : {},
+				]}
 				disabled={!hasSelectedTasks}
 				onPress={onMove}
 			>
 				<Text
 					style={[
 						styles.toolbarActionText,
-						!hasSelectedTasks
-							? { color: "rgba(155,155,155,.5)" }
-							: {},
+						!hasSelectedTasks ? { color: "#949494" } : {},
 					]}
 				>
 					Move
 				</Text>
 			</TouchableHighlight>
 			<TouchableHighlight
-				style={styles.toolbarAction}
+				style={[
+					styles.toolbarAction,
+					!hasSelectedTasks ? { borderColor: "#949494" } : {},
+				]}
 				disabled={!lenOne}
 				onPress={onUpdateTask}
 			>
 				<Text
 					style={[
 						styles.toolbarActionText,
-						!lenOne ? { color: "rgba(155,155,155,.5)" } : {},
+						!lenOne ? { color: "#949494" } : {},
 					]}
 				>
 					Modify
 				</Text>
 			</TouchableHighlight>
 			<TouchableHighlight
+				style={[
+					styles.toolbarAction,
+					!hasSelectedTasks ? { borderColor: "#949494" } : {},
+				]}
 				onPress={deleteTask}
-				style={styles.toolbarAction}
 				disabled={!hasSelectedTasks}
 			>
 				<Text
 					style={[
 						styles.toolbarActionText,
-						!hasSelectedTasks
-							? { color: "rgba(155,155,155,.5)" }
-							: {},
+						!hasSelectedTasks ? { color: "#949494" } : {},
 					]}
 				>
 					Delete

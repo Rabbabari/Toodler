@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 // Importing components from react-native for UI
 import { View, TouchableHighlight, Text } from "react-native";
 // Importing custom styles
-import styles from "./styles";
+import styles from "../../styles/toolbar";
 
 const Toolbar = ({
 	hasSelectedLists,
@@ -21,14 +21,14 @@ const Toolbar = ({
 	return (
 		<View styleName="horzontal" style={styles.toolbar}>
 			<TouchableHighlight
-				style={styles.tollbarAction}
+				style={styles.toolbarAction}
 				onPress={() => onAdd()}
 			>
 				<Text style={styles.toolbarActionText}>Create List</Text>
 			</TouchableHighlight>
 			<TouchableHighlight
 				style={[
-					styles.tollbarAction,
+					styles.toolbarAction,
 					!isOneListSelected ? { borderColor: "#949494" } : {},
 				]}
 				disabled={!isOneListSelected}
@@ -45,7 +45,7 @@ const Toolbar = ({
 			</TouchableHighlight>
 			<TouchableHighlight
 				style={[
-					styles.tollbarAction,
+					styles.toolbarAction,
 					!hasSelectedLists ? { borderColor: "#949494" } : {},
 				]}
 				disabled={!hasSelectedLists}

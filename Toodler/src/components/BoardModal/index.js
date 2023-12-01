@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text } from "react-native";
 import PropTypes from "prop-types";
 import NativeModal from "react-native-modal";
-import styles from "./styles";
+import styles from "../../styles/modal";
 
 const Modal = ({ isOpen, closeModal, title, children }) => (
 	<NativeModal
