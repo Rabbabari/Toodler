@@ -15,7 +15,7 @@ const ListName = ({ id, name, color, onLongPress, isSelected }) => {
 		<TouchableOpacity
 			style={[styles.button, { backgroundColor: color }]} // Styling the button with the list's color
 			onLongPress={() => onLongPress(id)} // Handling long press
-			onPress={() => navigate("Tasks", { listId: id })} // Handling regular press to navigate
+			onPress={() => navigate("Tasks", { listId: id, listName: name })} // Handling regular press to navigate
 		>
 			{isSelected && (
 				<AntDesign name="checkcircle" style={styles.checkmark} /> // Showing a checkmark if the item is selected

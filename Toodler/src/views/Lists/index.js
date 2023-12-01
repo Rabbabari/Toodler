@@ -1,8 +1,8 @@
 // Importing necessary React and React Native modules and components
-import React, { useState } from "react";
+import React, { useState, useLayoutEffect } from "react";
 import { View } from "react-native";
 // Importing the useRoute hook for accessing navigation route parameters
-import { useRoute } from "@react-navigation/native";
+import { useRoute, useNavigation } from "@react-navigation/native";
 // Custom hook for accessing and updating application data
 import { useData } from "../../services/AppContext";
 // Importing custom components
@@ -15,6 +15,7 @@ const Lists = () => {
 	// Accessing the current route and extracting parameters
 	const route = useRoute();
 	const boardId = route.params?.boardId;
+	const boardName = route.params?.boardName; // Extracting the boardName
 
 	// Using the custom hook to access and set lists
 	const { lists, setLists } = useData();
@@ -27,6 +28,16 @@ const Lists = () => {
 
 	// Filtering lists to show only those belonging to the current board
 	const displayLists = lists.filter((list) => list.boardId === boardId);
+
+	// Access the navigation object to control navigation
+	const navigation = useNavigation();
+
+	// Set the screen title to boardName after layout changes
+	useLayoutEffect(() => {
+		if (boardName) {
+			navigation.setOptions({ title: boardName });
+		}
+	}, [boardName, navigation]); // Re-run effect if boardName or navigation changes
 
 	// Handler for long press on a list item
 	const onListLongPress = (id) => {
