@@ -15,7 +15,7 @@ const TaskBar = ({
 	return (
 		<View styleName="horzontal" style={styles.toolbar}>
 			<TouchableHighlight style={styles.toolbarAction} onPress={onAdd}>
-				<Text style={styles.toolbarActionText}>New</Text>
+				<Text style={styles.toolbarActionText}>Create</Text>
 			</TouchableHighlight>
 			<TouchableHighlight
 				style={[
@@ -48,7 +48,7 @@ const TaskBar = ({
 						!lenOne ? { color: "#949494" } : {},
 					]}
 				>
-					Modify
+					Edit
 				</Text>
 			</TouchableHighlight>
 			<TouchableHighlight

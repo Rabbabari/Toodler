@@ -27,6 +27,8 @@ const BoardList = ({ boards, selectedBoard, onLongPress }) => {
 					);
 				}}
 				keyExtractor={(board) => board.id}
+				contentContainerStyle={{ flexGrow: 1 }}
+				style={{ flex: 1 }}
 			/>
 		</View>
 	);

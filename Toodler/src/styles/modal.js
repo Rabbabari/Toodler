@@ -12,7 +12,7 @@ export default StyleSheet.create({
 		flex: 1,
 		justifyContent: "center",
 		alignItems: "center",
-		flexGrow: 0.3,
+		flexGrow: 0.4,
 		borderRadius: 10,
 		width: winWidth - 100,
 		backgroundColor: "#f2e9e1",
@@ -27,6 +27,7 @@ export default StyleSheet.create({
 		borderColor: "black",
 		borderRadius: 5,
 		paddingVertical: 10,
+		width: 250,
 	},
 	icon: {
 		fontSize: 60,
@@ -74,5 +75,9 @@ export default StyleSheet.create({
 		transform: [{ translateX: -12 }, { translateY: -12 }],
 		color: "white",
 		fontSize: 24,
+	},
+	icon: {
+		fontSize: 60,
+		textAlign: "center",
 	},
 });

@@ -84,6 +84,7 @@ const TaskListDisplay = () => {
 	const updateTask = (newName, newDescription) => {
 		editingTask.name = newName;
 		editingTask.description = newDescription;
+		setSelectedTasks([]);
 	};
 
 	const editSelectedTask = () => {
