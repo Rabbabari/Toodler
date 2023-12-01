@@ -43,6 +43,8 @@ BoardThumbnail.propTypes = {
 	id: PropTypes.number,
 	// The board's name
 	name: PropTypes.string,
+	// The board's description
+	description: PropTypes.string,
 	// The board's thumbnail photo represented by a URL
 	thumbnailPhoto: PropTypes.string,
 	// Whether or not the board is selected

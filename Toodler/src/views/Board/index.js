@@ -12,10 +12,12 @@ const Board = () => {
 	const [selectedBoards, setSelectedBoard] = useState([]);
 	// A boolean flag to indicate if the modal to create a board is open or not
 	const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
+	// A boolean flag to indicate if the modal to edit a board is open or not
 	const [isBoardEditModalOpen, setIsBoardEditModalOpen] = useState(false);
-
+	// The board that is being edited
 	const [editingBoard, setEditingBoard] = useState(null);
 
+	// When a board is long pressed, we want to select it
 	const onBoardLongPress = (boardID) => {
 		//if the boars exists, we want to remove it
 		if (selectedBoards.includes(boardID)) {
@@ -28,6 +30,7 @@ const Board = () => {
 		}
 	};
 
+	// Delete the selected board
 	const deleteBoard = () => {
 		const newBoard = boards.filter(
 			(board) => !selectedBoards.includes(board.id)
@@ -41,6 +44,7 @@ const Board = () => {
 		// update the selected task
 	};
 
+	// Edit the selected board
 	const editSelectedBoards = () => {
 		const boardToEdit = boards.find(
 			(board) => board.id === selectedBoards[0]
@@ -50,20 +54,28 @@ const Board = () => {
 	};
 
 	//Adds the new board to the list of boards
-	const onAddNewBoard = (name, thumbnailPhoto) => {
+	const onAddNewBoard = (name, description, thumbnailPhoto) => {
 		console.log("I'm here");
 		const newBoard = {
 			id: Math.max(...boards.map((b) => b.id)) + 1,
 			name,
+			description,
 			thumbnailPhoto,
 		};
 		setBoards([...boards, newBoard]);
 	};
 
+	takePhoto = async () => {
+		const photo = await imageService.takePhoto();
+	};
+
+	console.log(boards);
+
 	return (
 		<View>
 			<Toolbar
 				hasSelectedBoards={selectedBoards.length > 0}
+				selectedBoardsLength={selectedBoards.length}
 				onCreateBoard={() => setIsCreateModalOpen(true)}
 				deleteBoard={() => deleteBoard(selectedBoards)}
 				editBoard={() => editSelectedBoards(selectedBoards)}

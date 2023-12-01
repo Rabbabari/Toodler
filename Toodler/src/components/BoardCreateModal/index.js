@@ -22,12 +22,12 @@ const CreateBoardModal = ({
 	const handleBoardSubmit = () => {
 		if (!boardName.trim() || !boardDescription.trim()) {
 			setError(true);
-			Alert.alert("Error", "Please enter a board name");
+			Alert.alert("Error", "Please enter a board name and description.");
 		} else {
 			onAddNewBoard(boardName, boardDescription, thumbnailPhoto);
 			setBoardName("");
-			setBoardDescription("");
 			setThumbnailPhoto("");
+			setBoardDescription("");
 			setError(false);
 			closeModal();
 		}
@@ -42,14 +42,6 @@ const CreateBoardModal = ({
 					onChangeText={setBoardName}
 				/>
 			</TouchableOpacity>
-			<TouchableOpacity>
-				<TextInput
-					style={styles.textInput}
-					placeholder="Enter Board Description"
-					value={boardDescription}
-					onChangeText={setBoardDescription}
-				/>
-			</TouchableOpacity>
 
 			<TouchableOpacity onPress={() => selectFromCameraRoll()}>
 				<Entypo
@@ -57,6 +49,15 @@ const CreateBoardModal = ({
 					name="image"
 					size={24}
 					color="black"
+				/>
+			</TouchableOpacity>
+
+			<TouchableOpacity>
+				<TextInput
+					style={styles.textInput}
+					placeholder="Enter Board Description"
+					value={boardDescription}
+					onChangeText={setBoardDescription}
 				/>
 			</TouchableOpacity>
 
@@ -86,7 +87,7 @@ CreateBoardModal.propTypes = {
 	// Function to select an image from the camera roll
 	selectFromCameraRoll: PropTypes.func.isRequired,
 	// Function to take a photo
-	takePhoto: PropTypes.func.isRequired,
+	takePhoto: PropTypes.func,
 };
 
 export default CreateBoardModal;

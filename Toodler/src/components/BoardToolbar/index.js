@@ -5,10 +5,14 @@ import styles from "./styles";
 
 const Toolbar = ({
 	hasSelectedBoards,
+	selectedBoardsLength,
 	onCreateBoard,
 	deleteBoard,
 	editBoard,
 }) => {
+	// Checking if exactly one list is selected for enabling the Edit functionality
+	const isOneBoardSelected = selectedBoardsLength === 1;
+
 	return (
 		<View styleName="horzontal" style={styles.toolbar}>
 			<TouchableHighlight
@@ -25,7 +29,7 @@ const Toolbar = ({
 				<Text
 					style={[
 						styles.toolbarActionText,
-						!hasSelectedBoards ? { color: "#949494" } : {},
+						!isOneBoardSelected ? { color: "#949494" } : {},
 					]}
 				>
 					Edit board
