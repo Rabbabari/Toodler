@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 import * as ImagePicker from "expo-image-picker";
-import { Text, TextInput, Alert } from "react-native";
+import { Text, TextInput, Alert, View, TouchableOpacity } from "react-native";
 import PropTypes from "prop-types";
 import { Entypo } from "@expo/vector-icons";
-import { TouchableOpacity } from "react-native";
-import Modal from "../Modal";
-import styles from "../../styles/modal";
-import BoardEditModal from "../BoardEditModal";
+import Modal from "../Modal"; // Importing custom modal component
+import styles from "../../styles/modal"; // Importing custom styles
 
 const CreateBoardModal = ({
 	isOpen,
@@ -49,37 +47,38 @@ const CreateBoardModal = ({
 	};
 	return (
 		<Modal isOpen={isOpen} closeModal={closeModal}>
-			<TouchableOpacity>
+			<Text style={styles.text}>Choose name</Text>
+			<View>
 				<TextInput
 					style={styles.textInput}
-					placeholder="Enter Board Name"
+					placeholder="Board Name"
 					value={boardName}
 					onChangeText={setBoardName}
 				/>
-			</TouchableOpacity>
-
-			<TouchableOpacity>
+				<Text style={styles.text}>Write description</Text>
 				<TextInput
 					style={styles.textInput}
-					placeholder="Enter Board Description"
+					placeholder="Board description"
 					value={boardDescription}
 					onChangeText={setBoardDescription}
 				/>
-			</TouchableOpacity>
 
-			<TouchableOpacity onPress={() => selectFromCameraRoll()}>
-				<Entypo
-					style={styles.icon}
-					name="image"
-					size={24}
-					color="black"
-					value={thumbnailPhoto}
-				/>
-			</TouchableOpacity>
-
-			<TouchableOpacity style={styles.submit} onPress={handleBoardSubmit}>
-				<Text style={styles.text}>Create Board</Text>
-			</TouchableOpacity>
+				<TouchableOpacity onPress={() => selectFromCameraRoll()}>
+					<Entypo
+						style={styles.icon}
+						name="image"
+						size={26}
+						color="black"
+						value={thumbnailPhoto}
+					/>
+				</TouchableOpacity>
+				<TouchableOpacity
+					style={styles.button}
+					onPress={handleBoardSubmit}
+				>
+					<Text style={styles.text}>Submit</Text>
+				</TouchableOpacity>
+			</View>
 		</Modal>
 	);
 };
@@ -92,7 +91,7 @@ CreateBoardModal.propTypes = {
 	// Function to create a new board
 	onCreateBoard: PropTypes.func.isRequired,
 	// Function to select an image from the camera roll
-	selectFromCameraRoll: PropTypes.func.isRequired,
+	selectFromCameraRoll: PropTypes.func,
 	// Function to take a photo
 	takePhoto: PropTypes.func,
 };

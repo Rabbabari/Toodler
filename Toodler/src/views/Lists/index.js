@@ -70,6 +70,7 @@ const Lists = () => {
 			return list;
 		});
 		setLists(updatedLists);
+		setSelectedLists([]);
 	};
 
 	// Handler for deleting selected lists

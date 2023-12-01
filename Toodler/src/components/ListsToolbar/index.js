@@ -24,7 +24,7 @@ const Toolbar = ({
 				style={styles.toolbarAction}
 				onPress={() => onAdd()}
 			>
-				<Text style={styles.toolbarActionText}>Create List</Text>
+				<Text style={styles.toolbarActionText}>Create</Text>
 			</TouchableHighlight>
 			<TouchableHighlight
 				style={[
@@ -40,7 +40,7 @@ const Toolbar = ({
 						!isOneListSelected ? { color: "#949494" } : {},
 					]}
 				>
-					Edit list
+					Edit
 				</Text>
 			</TouchableHighlight>
 			<TouchableHighlight

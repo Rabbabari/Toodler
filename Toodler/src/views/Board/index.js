@@ -50,6 +50,7 @@ const Board = () => {
 		);
 		setEditingBoard(boardToEdit);
 		setIsBoardEditModalOpen(true);
+		setSelectedBoard([]);
 	};
 
 	//Adds the new board to the list of boards
@@ -68,7 +69,7 @@ const Board = () => {
 	};
 
 	return (
-		<View>
+		<View style={{ flex: 1 }}>
 			<Toolbar
 				hasSelectedBoards={selectedBoards.length > 0}
 				selectedBoardsLength={selectedBoards.length}

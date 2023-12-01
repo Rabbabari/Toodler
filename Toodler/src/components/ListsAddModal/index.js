@@ -44,7 +44,7 @@ const AddModal = ({ isOpen, closeModal, onAddNewList }) => {
 	return (
 		<Modal isOpen={isOpen} closeModal={closeModal}>
 			<Text style={styles.text}>Choose name</Text>
-			<View style={styles.formContainer}>
+			<View>
 				<TextInput
 					style={styles.textInput}
 					placeholder="List Name"

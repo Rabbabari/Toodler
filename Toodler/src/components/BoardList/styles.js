@@ -6,7 +6,7 @@ export default StyleSheet.create({
 		//justifyContent: "space-around",
 		flexDirection: "row",
 		//justifyContent: "space-between",
-		flexWrap: "wrap",
 		padding: 10,
+		backgroundColor: "#f2e9e1",
 	},
 });
