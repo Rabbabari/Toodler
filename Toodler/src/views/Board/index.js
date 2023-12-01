@@ -1,13 +1,12 @@
 import React, { useState } from "react";
-import { View, Text } from "react-native";
+import { View } from "react-native";
+import { useData } from "../../services/AppContext";
 import Toolbar from "../../components/BoardToolbar";
 import BoardList from "../../components/BoardList";
 import CreateBoardModal from "../../components/BoardCreateModal";
-import data from "../../resources/data.json";
 
 const Board = () => {
-	// All boards with the application directory
-	const [boards, setBoards] = useState(data.boards);
+	const { boards, setBoards } = useData();
 	// All selected boards
 	const [selectedBoards, setSelectedBoard] = useState([]);
 	// A boolean flag to indicate if the modal to create a board is open or not
@@ -25,18 +24,32 @@ const Board = () => {
 		}
 	};
 
-	const deleteBoard = (selectedBoards) => {
-		selectedBoards.forEach((element) => {
-			//console.log(element);
-			const updatedBoards = boards.filter(
-				(board) => board.id !== element
-			);
-			setBoards(updatedBoards);
-			setSelectedBoard(updatedBoards);
-		});
+	const deleteBoard = () => {
+		const newBoard = boards.filter(
+			(board) => !selectedBoards.includes(board.id)
+		);
+		setBoards(newBoard);
+		setSelectedBoard([]);
 	};
-	console.log("selectedBoards");
-	console.log(selectedBoards);
+	const updateBoardName = (id, newName) => {
+		const updatedBoards = boards.map((board) => {
+			if (board.id === id) {
+				return { ...board, name: newName };
+			}
+			return board;
+		});
+		setBoards(updatedBoards);
+	};
+
+	const updateBoardImage = (id, newImage) => {
+		const updatedBoards = boards.map((board) => {
+			if (board.id === id) {
+				return { ...board, image: newImage };
+			}
+			return board;
+		});
+		setBoards(updatedBoards);
+	};
 
 	const takePhoto = async () => {
 		const photo = await imageService.takePhoto();
