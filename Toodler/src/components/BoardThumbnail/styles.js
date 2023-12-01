@@ -1,6 +1,11 @@
 import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
+	container: {
+		width: 200,
+		flex: 1,
+		flexDirection: "column",
+	},
 	image: {
 		width: 100,
 		height: 100,
@@ -14,14 +19,14 @@ export default StyleSheet.create({
 		fontSize: 16,
 	},
 	textName: {
+		fontWeight: "bold",
 		fontSize: 16,
 		textAlign: "center",
-		flexWrap: "wrap",
+		marginHorizontal: 10,
 	},
 	textDescription: {
-		width: 100,
 		fontSize: 16,
 		textAlign: "center",
-		flexWrap: "wrap",
+		marginHorizontal: 10,
 	},
 });

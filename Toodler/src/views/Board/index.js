@@ -49,11 +49,6 @@ const Board = () => {
 		setIsBoardEditModalOpen(true);
 	};
 
-	const takePhoto = async () => {
-		const photo = await imageService.takePhoto();
-		console.log(photo);
-	};
-
 	//Adds the new board to the list of boards
 	const onAddNewBoard = (name, thumbnailPhoto) => {
 		console.log("I'm here");
@@ -82,7 +77,6 @@ const Board = () => {
 				isOpen={isCreateModalOpen}
 				closeModal={() => setIsCreateModalOpen(false)}
 				onCreateBoard={() => {}}
-				takePhoto={() => {}}
 				selectFromCameraRoll={() => {}}
 				onAddNewBoard={onAddNewBoard}
 			/>

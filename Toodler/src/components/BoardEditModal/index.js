@@ -9,7 +9,7 @@ const BoardEditModal = ({ isOpen, closeModal, board, updateBoard }) => {
 	const [name, setName] = useState("");
 	const [thumbnailPhoto, setThumbnailPhoto] = useState("");
 	const [description, setDescription] = useState("");
-	console.log();
+
 	useEffect(() => {
 		if (board) {
 			console.log(board);

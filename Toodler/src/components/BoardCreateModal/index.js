@@ -11,7 +11,6 @@ const CreateBoardModal = ({
 	isOpen,
 	closeModal,
 	onCreateBoard,
-	takePhoto,
 	selectFromCameraRoll,
 	onAddNewBoard,
 }) => {

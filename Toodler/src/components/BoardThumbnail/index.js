@@ -19,13 +19,13 @@ const BoardThumbnail = ({
 	return (
 		<TouchableOpacity
 			onLongPress={() => onLongPress(id)}
-			onPress={() => navigate("Lists", { boardId: id })}
+			onPress={() => navigate("Lists", { boardId: id, boardName: name })}
 		>
 			{isSelected && (
 				<AntDesign name="checkcircleo" style={styles.checkmark} />
 			)}
 
-			<View style={{ opacity: isSelected ? 0.5 : 1 }}>
+			<View style={[styles.container, { opacity: isSelected ? 0.5 : 1 }]}>
 				<Image
 					style={styles.image}
 					resizeMode="cover"
