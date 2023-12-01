@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { Entypo } from "@expo/vector-icons";
 import { TouchableOpacity, View, Text, TextInput, Alert } from "react-native";
-import Modal from "../BoardModal";
+import Modal from "../Modal";
 import styles from "../../styles/modal";
 
 const BoardEditModal = ({ isOpen, closeModal, board, updateBoard }) => {

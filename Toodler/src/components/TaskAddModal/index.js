@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { TouchableOpacity, View, Text, TextInput, Alert } from "react-native";
-import Modal from "../TaskModal";
+import Modal from "../Modal";
 import styles from "../../styles/modal";
 
 const TaskAddModal = ({ isOpen, closeModal, createTask }) => {

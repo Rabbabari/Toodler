@@ -3,8 +3,8 @@ import { Text, TextInput, Alert } from "react-native";
 import PropTypes from "prop-types";
 import { Entypo } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native";
-import Modal from "../BoardModal";
-import styles from "./styles";
+import Modal from "../Modal";
+import styles from "../../styles/modal";
 import BoardEditModal from "../BoardEditModal";
 
 const CreateBoardModal = ({
