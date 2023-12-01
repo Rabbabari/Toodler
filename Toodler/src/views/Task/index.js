@@ -102,12 +102,15 @@ const TaskListDisplay = () => {
 		// });
 	};
 
-	const moveTask = () => {
+	const moveTask = (newListId) => {
 		// NOTE. button works
 		// TODO
 		// Move all selected tasks to another list
 		// Display all lists to chose which to move to
 		// change listId for selected tasks to the new list
+		selectedTasks.forEach((task) => {
+			task.listId = newListId;
+		});
 	};
 
 	return (
@@ -143,6 +146,7 @@ const TaskListDisplay = () => {
 			<TaskMoveModal
 				isOpen={isMoveModalOpen}
 				closeModal={() => setIsMoveModalOpen(false)}
+				moveTask={moveTask}
 			/>
 		</View>
 	);
