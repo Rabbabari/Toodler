@@ -10,13 +10,16 @@ const BoardList = ({ boards, selectedBoard, onLongPress }) => {
 			<FlatList
 				numColumns={2}
 				data={boards}
-				renderItem={({ item: { id, name, thumbnailPhoto } }) => {
+				renderItem={({
+					item: { id, name, description, thumbnailPhoto },
+				}) => {
 					//console.log(id);
 					//console.log("Before");
 					return (
 						<BoardThumbnail
 							id={id}
 							name={name}
+							description={description}
 							URL={thumbnailPhoto}
 							onLongPress={onLongPress}
 							isSelected={selectedBoard.indexOf(id) !== -1}

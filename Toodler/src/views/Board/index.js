@@ -4,6 +4,7 @@ import { useData } from "../../services/AppContext";
 import Toolbar from "../../components/BoardToolbar";
 import BoardList from "../../components/BoardList";
 import CreateBoardModal from "../../components/BoardCreateModal";
+import BoardEditModal from "../../components/BoardEditModal";
 
 const Board = () => {
 	const { boards, setBoards } = useData();
@@ -11,6 +12,9 @@ const Board = () => {
 	const [selectedBoards, setSelectedBoard] = useState([]);
 	// A boolean flag to indicate if the modal to create a board is open or not
 	const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
+	const [isBoardEditModalOpen, setIsBoardEditModalOpen] = useState(false);
+
+	const [editingBoard, setEditingBoard] = useState(null);
 
 	const onBoardLongPress = (boardID) => {
 		//if the boars exists, we want to remove it
@@ -31,29 +35,18 @@ const Board = () => {
 		setBoards(newBoard);
 		setSelectedBoard([]);
 	};
-	const updateBoardName = (id, newName) => {
-		const updatedBoards = boards.map((board) => {
-			if (board.id === id) {
-				return { ...board, name: newName };
-			}
-			return board;
-		});
-		setBoards(updatedBoards);
+
+	const updateBoard = (boardId) => {
+		// NOTE
+		// update the selected task
 	};
 
-	const updateBoardImage = (id, newImage) => {
-		const updatedBoards = boards.map((board) => {
-			if (board.id === id) {
-				return { ...board, image: newImage };
-			}
-			return board;
-		});
-		setBoards(updatedBoards);
-	};
-
-	const takePhoto = async () => {
-		const photo = await imageService.takePhoto();
-		console.log(photo);
+	const editSelectedBoards = () => {
+		const boardToEdit = boards.find(
+			(board) => board.id === selectedBoards[0]
+		);
+		setEditingBoard(boardToEdit);
+		setIsBoardEditModalOpen(true);
 	};
 
 	//Adds the new board to the list of boards
@@ -73,7 +66,7 @@ const Board = () => {
 				hasSelectedBoards={selectedBoards.length > 0}
 				onCreateBoard={() => setIsCreateModalOpen(true)}
 				deleteBoard={() => deleteBoard(selectedBoards)}
-				//onRemove={() => deleteBoards(selectedBoards)}
+				editBoard={() => editSelectedBoards(selectedBoards)}
 			/>
 			<BoardList
 				onLongPress={(id) => onBoardLongPress(id)}
@@ -84,9 +77,14 @@ const Board = () => {
 				isOpen={isCreateModalOpen}
 				closeModal={() => setIsCreateModalOpen(false)}
 				onCreateBoard={() => {}}
-				takePhoto={() => {}}
 				selectFromCameraRoll={() => {}}
 				onAddNewBoard={onAddNewBoard}
+			/>
+			<BoardEditModal
+				isOpen={isBoardEditModalOpen}
+				closeModal={() => setIsBoardEditModalOpen(false)}
+				board={editingBoard}
+				updateBoard={updateBoard}
 			/>
 		</View>
 	);
