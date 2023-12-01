@@ -27,6 +27,8 @@ const ListofLists = ({ lists, onLongPress, selectedLists }) => {
 					);
 				}}
 				keyExtractor={(item) => item.id} // Key extractor for the list items
+				contentContainerStyle={{ flexGrow: 1 }}
+				style={{ flex: 1 }}
 			/>
 		</View>
 	);

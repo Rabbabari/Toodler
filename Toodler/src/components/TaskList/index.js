@@ -19,6 +19,8 @@ const TaskList = ({ tasks, selectedTasks, onLongPress, checkTask }) => {
 					/>
 				)}
 				keyExtractor={(item) => item.id.toString()}
+				contentContainerStyle={{ flexGrow: 1 }}
+				style={{ flex: 1 }}
 			/>
 		</View>
 	);
