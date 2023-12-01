@@ -14,16 +14,13 @@ const TaskBar = ({
 	const lenOne = selectedTasksLength === 1;
 	return (
 		<View styleName="horzontal" style={styles.toolbar}>
-			<TouchableHighlight
-				style={styles.toolbarAction}
-				onPress={() => onAdd()}
-			>
+			<TouchableHighlight style={styles.toolbarAction} onPress={onAdd}>
 				<Text style={styles.toolbarActionText}>New</Text>
 			</TouchableHighlight>
 			<TouchableHighlight
 				style={styles.toolbarAction}
 				disabled={!hasSelectedTasks}
-				onPress={onMove()}
+				onPress={onMove}
 			>
 				<Text
 					style={[
