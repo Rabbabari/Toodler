@@ -6,21 +6,19 @@ import Task from "../Task";
 
 const TaskList = ({ tasks, selectedTasks, onLongPress, checkTask }) => {
 	return (
-		<View>
+		<View style={styles.listContainer}>
 			<FlatList
 				numColumns={1}
 				data={tasks}
-				renderItem={({ item }) => {
-					return (
-						<Task
-							task={item}
-							onLongPress={onLongPress}
-							isSelected={selectedTasks.indexOf(item.id) !== -1}
-							checkTask={checkTask}
-						/>
-					);
-				}}
-				keyExtractor={(item) => item.id}
+				renderItem={({ item }) => (
+					<Task
+						task={item}
+						onLongPress={onLongPress}
+						isSelected={selectedTasks.indexOf(item.id) !== -1}
+						checkTask={checkTask}
+					/>
+				)}
+				keyExtractor={(item) => item.id.toString()}
 			/>
 		</View>
 	);

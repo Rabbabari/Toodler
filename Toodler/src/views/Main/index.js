@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, TouchableHighlight, Image } from "react-native";
+import { View, Text, TouchableHighlight, Image, Alert } from "react-native";
 import { useData } from "../../services/AppContext";
 import { useNavigation } from "@react-navigation/native";
 import logo from "../../resources/logo.png";

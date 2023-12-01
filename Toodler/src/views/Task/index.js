@@ -7,7 +7,6 @@ import TaskAddModal from "../../components/TaskAddModal";
 import TaskEditModal from "../../components/TaskEditModal";
 import TaskMoveModal from "../../components/TaskMoveModal";
 import { useData } from "../../services/AppContext";
-import styles from "./styles";
 
 const TaskListDisplay = () => {
 	const route = useRoute();
@@ -117,7 +116,7 @@ const TaskListDisplay = () => {
 	};
 
 	return (
-		<View>
+		<View style={{ flex: 1 }}>
 			<TaskBar
 				hasSelectedTasks={selectedTasks.length > 0}
 				selectedTasksLength={selectedTasks.length}

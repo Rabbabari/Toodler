@@ -3,26 +3,35 @@ import React from "react";
 import PropTypes from "prop-types";
 import { View, Text, TouchableOpacity, Image } from "react-native";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
+import { AntDesign } from "@expo/vector-icons"; // Importing icon component
 import styles from "./styles";
 
 const Task = ({ task, onLongPress, isSelected, checkTask }) => {
 	return (
-		<View style={styles.listContainer}>
-			<BouncyCheckbox
-				onPress={() => checkTask(task.id)}
-				isChecked={task.isFinished}
-				disabled={isSelected}
-				style={{ opacity: isSelected ? 0.2 : 1 }}
-			/>
-			<TouchableOpacity onLongPress={() => onLongPress(task.id)}>
-				<View style={{ opacity: isSelected ? 0.2 : 1 }}>
+		<TouchableOpacity
+			style={[
+				styles.button,
+				{ backgroundColor: isSelected ? "#f2e9e1" : "#f2e9e1" },
+			]}
+			onLongPress={() => onLongPress(task.id)}
+		>
+			{isSelected && (
+				<AntDesign name="checkcircle" style={styles.checkmark} /> // Showing a checkmark if the item is selected
+			)}
+			<View style={{ flexDirection: "row", alignItems: "center" }}>
+				<BouncyCheckbox
+					onPress={() => checkTask(task.id)}
+					isChecked={task.isFinished}
+					style={{ opacity: isSelected ? 0.5 : 1 }}
+				/>
+				<View style={{ opacity: isSelected ? 0.5 : 1 }}>
 					<Text style={styles.taskName}>{task.name}</Text>
 					<Text style={styles.taskDescription}>
 						{task.description}
 					</Text>
 				</View>
-			</TouchableOpacity>
-		</View>
+			</View>
+		</TouchableOpacity>
 	);
 };
 
