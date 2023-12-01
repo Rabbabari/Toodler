@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { View, TouchableOpacity, TouchableHighlight, Text } from "react-native";
-import styles from "./styles";
+import styles from "../../styles/toolbar";
 
 const Toolbar = ({
 	hasSelectedBoards,
@@ -19,7 +19,7 @@ const Toolbar = ({
 				style={styles.toolbarAction}
 				onPress={() => onCreateBoard()}
 			>
-				<Text style={styles.toolbarActionText}>Create board</Text>
+				<Text style={styles.toolbarActionText}>Create</Text>
 			</TouchableHighlight>
 			<TouchableHighlight
 				style={styles.toolbarAction}
@@ -32,7 +32,7 @@ const Toolbar = ({
 						!isOneBoardSelected ? { color: "#949494" } : {},
 					]}
 				>
-					Edit board
+					Edit
 				</Text>
 			</TouchableHighlight>
 			<TouchableHighlight
@@ -46,7 +46,7 @@ const Toolbar = ({
 						!hasSelectedBoards ? { color: "#949494" } : {},
 					]}
 				>
-					Delete board
+					Delete
 				</Text>
 			</TouchableHighlight>
 		</View>

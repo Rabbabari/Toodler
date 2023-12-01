@@ -25,7 +25,6 @@ const Board = () => {
 		}
 		//Otherwise, we want to add it
 		else {
-			//console.log(boardID);
 			setSelectedBoard([...selectedBoards, boardID]);
 		}
 	};
@@ -55,7 +54,6 @@ const Board = () => {
 
 	//Adds the new board to the list of boards
 	const onAddNewBoard = (name, description, thumbnailPhoto) => {
-		console.log("I'm here");
 		const newBoard = {
 			id: Math.max(...boards.map((b) => b.id)) + 1,
 			name,
@@ -68,8 +66,6 @@ const Board = () => {
 	takePhoto = async () => {
 		const photo = await imageService.takePhoto();
 	};
-
-	console.log(boards);
 
 	return (
 		<View>
