@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { Entypo } from "@expo/vector-icons";
 import { TouchableOpacity, View, Text, TextInput, Alert } from "react-native";
 import Modal from "../TaskModal";
 import styles from "./styles";
