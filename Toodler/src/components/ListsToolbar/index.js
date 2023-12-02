@@ -13,6 +13,7 @@ const Toolbar = ({
 	onAdd,
 	onDelete,
 	onEdit,
+	onMove,
 }) => {
 	// Checking if exactly one list is selected for enabling the Edit functionality
 	const isOneListSelected = selectedLists.length === 1;
@@ -20,12 +21,22 @@ const Toolbar = ({
 	// Rendering the toolbar
 	return (
 		<View styleName="horzontal" style={styles.toolbar}>
-			<TouchableHighlight
-				style={styles.toolbarAction}
-				onPress={() => onAdd()}
-			>
+			{/* Add a new list */}
+			<TouchableHighlight style={styles.toolbarAction} onPress={onAdd}>
 				<Text style={styles.toolbarActionText}>Create</Text>
 			</TouchableHighlight>
+			{/* Move lists */}
+			<TouchableHighlight
+				style={[
+					styles.toolbarAction,
+					!hasSelectedLists ? { backgroundColor: "#ff8da0" } : {},
+				]}
+				disabled={!hasSelectedLists}
+				onPress={onMove}
+			>
+				<Text style={styles.toolbarActionText}>Move</Text>
+			</TouchableHighlight>
+			{/* Edit a task */}
 			<TouchableHighlight
 				style={[
 					styles.toolbarAction,
@@ -36,6 +47,7 @@ const Toolbar = ({
 			>
 				<Text style={styles.toolbarActionText}>Edit</Text>
 			</TouchableHighlight>
+			{/* Delete lists */}
 			<TouchableHighlight
 				style={[
 					styles.toolbarAction,
@@ -58,6 +70,7 @@ Toolbar.propTypes = {
 	onAdd: PropTypes.func, // Function to handle adding a list
 	onDelete: PropTypes.func, // Function to handle deleting lists
 	onEdit: PropTypes.func, // Function to handle editing a list
+	onMove: PropTypes.func.isRequired,
 };
 
 export default Toolbar;

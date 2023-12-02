@@ -4,8 +4,9 @@ import { useRoute, useNavigation } from "@react-navigation/native";
 import { useData } from "../../services/AppContext";
 import Toolbar from "../../components/ListsToolbar";
 import ListofLists from "../../components/ListofLists";
-import AddModal from "../../components/ListsAddModal";
-import EditModal from "../../components/ListsEditModal";
+import AddModal from "../../components/ListAddModal";
+import EditModal from "../../components/ListEditModal";
+import MoveModal from "../../components/ListMoveModal";
 
 const Lists = () => {
 	// Accessing the current route and extracting parameters
@@ -21,6 +22,7 @@ const Lists = () => {
 	const [selectedLists, setSelectedLists] = useState([]);
 	const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 	const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+	const [isMoveModalOpen, setIsMoveModalOpen] = useState(false);
 	const [editingList, setEditingList] = useState(null);
 
 	// Filtering lists to show only those belonging to the current board
@@ -83,6 +85,17 @@ const Lists = () => {
 		setEditingList(listToEdit);
 		setIsEditModalOpen(true);
 	};
+	// Moves all the selected lists from their original board to another board
+	const moveLists = (newBoardId) => {
+		// Copies the tasks, and updates the listId of the selected lists
+		const updatedLists = [...lists].map((list) => {
+			if (selectedLists.includes(list.id)) {
+				return { ...list, boardId: newBoardId };
+			}
+			return list;
+		});
+		setLists(updatedLists); // Sets the state will the lists that have been moved
+	};
 
 	// Rendering the component
 	return (
@@ -93,6 +106,9 @@ const Lists = () => {
 				hasSelectedLists={selectedLists.length > 0}
 				selectedLists={selectedLists}
 				onDelete={onDeleteSelectedLists}
+				onMove={() => {
+					setIsMoveModalOpen(true);
+				}}
 			/>
 			<ListofLists
 				onLongPress={onListLongPress}
@@ -109,6 +125,12 @@ const Lists = () => {
 				closeModal={() => setIsEditModalOpen(false)}
 				list={editingList}
 				onUpdateList={onUpdateList}
+			/>
+			<MoveModal
+				isOpen={isMoveModalOpen}
+				closeModal={() => setIsMoveModalOpen(false)}
+				moveLists={moveLists} // A function to move lists
+				taskListId={boardId}
 			/>
 		</View>
 	);
