@@ -5,6 +5,7 @@ import { useNavigation } from "@react-navigation/native";
 import { View, Text, TouchableOpacity, Image } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import styles from "./styles";
+import defaultImage from "../../resources/defaultImage.png";
 
 const BoardThumbnail = ({
 	id,
@@ -16,6 +17,14 @@ const BoardThumbnail = ({
 }) => {
 	const { navigate } = useNavigation();
 
+	// If the board does not have a thumbnail photo, we want to use the default image
+	let photo = "";
+	if (!URL) {
+		photo = defaultImage;
+	} else {
+		photo = { uri: URL };
+	}
+
 	return (
 		<TouchableOpacity
 			onLongPress={() => onLongPress(id)}
@@ -26,11 +35,7 @@ const BoardThumbnail = ({
 			)}
 
 			<View style={[styles.container, { opacity: isSelected ? 0.5 : 1 }]}>
-				<Image
-					style={styles.image}
-					resizeMode="cover"
-					source={{ uri: URL }}
-				/>
+				<Image style={styles.image} resizeMode="cover" source={photo} />
 				<Text style={styles.textName}>{name}</Text>
 				<Text style={styles.textDescription}>{description}</Text>
 			</View>
