@@ -5,7 +5,6 @@ import { View, Text, TouchableOpacity } from "react-native";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 import { AntDesign } from "@expo/vector-icons"; // Importing icon component
 import styles from "./styles";
-import pink from "../../styles/colors";
 
 const Task = ({ task, onLongPress, isSelected, checkTask }) => {
 	return (
