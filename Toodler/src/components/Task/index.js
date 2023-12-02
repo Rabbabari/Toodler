@@ -5,6 +5,7 @@ import { View, Text, TouchableOpacity } from "react-native";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 import { AntDesign } from "@expo/vector-icons"; // Importing icon component
 import styles from "./styles";
+import pink from "../../styles/colors";
 
 const Task = ({ task, onLongPress, isSelected, checkTask }) => {
 	return (
@@ -17,6 +18,13 @@ const Task = ({ task, onLongPress, isSelected, checkTask }) => {
 			)}
 			<View style={{ flexDirection: "row", alignItems: "center" }}>
 				<BouncyCheckbox
+					fillColor="#FF667A"
+					innerIconStyle={{
+						borderRadius: 8,
+					}}
+					iconStyle={{
+						borderRadius: 8,
+					}}
 					onPress={() => checkTask(task.id)}
 					isChecked={task.isFinished}
 					style={{ opacity: isSelected ? 0.5 : 1 }}
