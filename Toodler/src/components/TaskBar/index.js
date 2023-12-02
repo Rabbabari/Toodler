@@ -15,9 +15,11 @@ const TaskBar = ({
 
 	return (
 		<View styleName="horzontal" style={styles.toolbar}>
+			{/* Create a new task */}
 			<TouchableHighlight style={styles.toolbarAction} onPress={onAdd}>
 				<Text style={styles.toolbarActionText}>Create</Text>
 			</TouchableHighlight>
+			{/* Move tasks */}
 			<TouchableHighlight
 				style={[
 					styles.toolbarAction,
@@ -28,6 +30,7 @@ const TaskBar = ({
 			>
 				<Text style={styles.toolbarActionText}>Move</Text>
 			</TouchableHighlight>
+			{/* Update a task */}
 			<TouchableHighlight
 				style={[
 					styles.toolbarAction,
@@ -38,6 +41,7 @@ const TaskBar = ({
 			>
 				<Text style={styles.toolbarActionText}>Edit</Text>
 			</TouchableHighlight>
+			{/* Delete tasks */}
 			<TouchableHighlight
 				style={[
 					styles.toolbarAction,
