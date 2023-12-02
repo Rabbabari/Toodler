@@ -6,6 +6,8 @@ import Modal from "../Modal";
 import { useData } from "../../services/AppContext";
 import styles from "../../styles/modal";
 
+DropDownPicker.setListMode("MODAL");
+
 const TaskMoveModal = ({ isOpen, closeModal, moveTasks, taskListId }) => {
 	const [open, setOpen] = useState(false); // Boolean for if the modal is open or not
 	const { lists } = useData(); // Gets all the lists for the user to choose from
@@ -45,7 +47,8 @@ const TaskMoveModal = ({ isOpen, closeModal, moveTasks, taskListId }) => {
 					open={open}
 					setOpen={setOpen}
 					setValue={setListId}
-					placeholder={name}
+					modalTitle="Pick a list"
+					searchable={true}
 				/>
 			</View>
 			<TouchableOpacity style={styles.button} onPress={handleSubmit}>
