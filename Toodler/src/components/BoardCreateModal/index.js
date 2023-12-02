@@ -6,12 +6,7 @@ import { Entypo } from "@expo/vector-icons";
 import Modal from "../Modal"; // Importing custom modal component
 import styles from "../../styles/modal"; // Importing custom styles
 
-const CreateBoardModal = ({
-	isOpen,
-	closeModal,
-	onCreateBoard,
-	onAddNewBoard,
-}) => {
+const CreateBoardModal = ({ isOpen, closeModal, onAddNewBoard }) => {
 	const [boardName, setBoardName] = useState("");
 	const [boardDescription, setBoardDescription] = useState("");
 	const [thumbnailPhoto, setThumbnailPhoto] = useState("");
@@ -89,11 +84,7 @@ CreateBoardModal.propTypes = {
 	// Function to close the Modal
 	closeModal: PropTypes.func.isRequired,
 	// Function to create a new board
-	onCreateBoard: PropTypes.func.isRequired,
-	// Function to select an image from the camera roll
-	selectFromCameraRoll: PropTypes.func,
-	// Function to take a photo
-	takePhoto: PropTypes.func,
+	onAddNewBoard: PropTypes.func.isRequired,
 };
 
 export default CreateBoardModal;

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import { Entypo } from "@expo/vector-icons";
 import { TouchableOpacity, View, Text, TextInput, Alert } from "react-native";
 import Modal from "../Modal";
 import styles from "../../styles/modal";
@@ -15,8 +14,9 @@ const TaskEditModal = ({ isOpen, closeModal, task, updateTask }) => {
 		}
 	}, [task]);
 
+	// When a user presses select, if there is a name, update the task with the new name and description
 	const handleSubmit = () => {
-		if (!name.trim() || !description.trim()) {
+		if (!name.trim()) {
 			Alert.alert("Error", "Please enter a name and description");
 		} else {
 			updateTask(name, description);

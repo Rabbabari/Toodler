@@ -1,7 +1,7 @@
 import React from "react";
 //import { withNavigation } from "@react-navigation";
 import PropTypes from "prop-types";
-import { View, Text, TouchableOpacity, Image } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 import { AntDesign } from "@expo/vector-icons"; // Importing icon component
 import styles from "./styles";
@@ -9,10 +9,7 @@ import styles from "./styles";
 const Task = ({ task, onLongPress, isSelected, checkTask }) => {
 	return (
 		<TouchableOpacity
-			style={[
-				styles.button,
-				{ backgroundColor: isSelected ? "white" : "white" },
-			]}
+			style={styles.button}
 			onLongPress={() => onLongPress(task.id)}
 		>
 			{isSelected && (

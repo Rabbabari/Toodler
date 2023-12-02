@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { View, FlatList, Text, TouchableOpacity } from "react-native";
+import { View, FlatList } from "react-native";
 import styles from "./styles";
 import Task from "../Task";
 

@@ -1,11 +1,7 @@
-// Importing necessary React and React Native modules and components
 import React, { useState, useLayoutEffect } from "react";
 import { View } from "react-native";
-// Importing the useRoute hook for accessing navigation route parameters
 import { useRoute, useNavigation } from "@react-navigation/native";
-// Custom hook for accessing and updating application data
 import { useData } from "../../services/AppContext";
-// Importing custom components
 import Toolbar from "../../components/ListsToolbar";
 import ListofLists from "../../components/ListofLists";
 import AddModal from "../../components/ListsAddModal";
@@ -63,7 +59,7 @@ const Lists = () => {
 
 	// Handler for updating an existing list
 	const onUpdateList = (id, name, color) => {
-		const updatedLists = lists.map((list) => {
+		const updatedLists = [...lists].map((list) => {
 			if (list.id === id) {
 				return { ...list, name, color };
 			}

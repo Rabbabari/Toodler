@@ -5,6 +5,14 @@ import { AntDesign } from "@expo/vector-icons"; // Importing icon from Expo's ve
 import PropTypes from "prop-types"; // For prop type validation
 import Modal from "../Modal"; // Importing custom modal component
 import styles from "../../styles/modal"; // Importing custom styles
+import {
+	lightPink,
+	purple,
+	blue,
+	green,
+	yellow,
+	orange,
+} from "../../styles/colors";
 
 // AddModal component definition
 const AddModal = ({ isOpen, closeModal, onAddNewList }) => {
@@ -14,15 +22,7 @@ const AddModal = ({ isOpen, closeModal, onAddNewList }) => {
 	const [error, setError] = useState(false);
 
 	// Array of color options for the list
-	const colorOptions = [
-		// List of color codes
-		"#A5A5F7",
-		"#9CE7FF",
-		"#7BEFB5",
-		"#FFEF8C",
-		"#FFCE9C",
-		"#FFA5D6",
-	];
+	const colorOptions = [purple, blue, green, yellow, orange, lightPink];
 
 	// Function to handle the submission of the new list
 	const handleSubmit = () => {

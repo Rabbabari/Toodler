@@ -9,8 +9,9 @@ const TaskAddModal = ({ isOpen, closeModal, createTask }) => {
 	const [description, setDescription] = useState("");
 	const [error, setError] = useState(false);
 
+	// When a user presses submit, if there is a name, create a new task with that name and description
 	const handleSubmit = () => {
-		if (!name.trim() || !description.trim()) {
+		if (!name.trim()) {
 			setError(true);
 			Alert.alert("Error", "Please enter a name and description");
 		} else {
