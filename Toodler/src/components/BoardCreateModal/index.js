@@ -28,13 +28,13 @@ const CreateBoardModal = ({ isOpen, closeModal, onAddNewBoard }) => {
 	};
 
 	const handleBoardSubmit = () => {
-		if (!boardName.trim() || !boardDescription.trim()) {
+		if (!boardName.trim()) {
 			setError(true);
-			Alert.alert("Error", "Please enter a board name and description.");
+			Alert.alert("Error", "Please enter a board name.");
 		} else {
 			onAddNewBoard(boardName, boardDescription, thumbnailPhoto);
 			setBoardName("");
-			setThumbnailPhoto("");
+			setThumbnailPhoto();
 			setBoardDescription("");
 			setError(false);
 			closeModal();
