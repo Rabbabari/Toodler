@@ -25,7 +25,7 @@ const TaskAddModal = ({ isOpen, closeModal, createTask }) => {
 
 	return (
 		<Modal isOpen={isOpen} closeModal={closeModal}>
-			<View style={styles.formContainer}>
+			<View>
 				<Text style={styles.text}>Name</Text>
 				<TextInput
 					style={styles.textInput}

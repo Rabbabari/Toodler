@@ -45,7 +45,7 @@ const EditModal = ({ isOpen, closeModal, list, onUpdateList }) => {
 	return (
 		<Modal isOpen={isOpen} closeModal={closeModal}>
 			<Text style={styles.text}>Edit List</Text>
-			<View style={styles.formContainer}>
+			<View>
 				<TextInput
 					style={styles.textInput}
 					placeholder="List Name"
