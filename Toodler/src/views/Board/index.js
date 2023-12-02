@@ -8,6 +8,7 @@ import BoardEditModal from "../../components/BoardEditModal";
 
 const Board = () => {
 	const { boards, setBoards } = useData();
+	const { nextBoardId, setNextBoardId } = useData();
 	// All selected boards
 	const [selectedBoards, setSelectedBoard] = useState([]);
 	// A boolean flag to indicate if the modal to create a board is open or not
@@ -58,11 +59,12 @@ const Board = () => {
 	//Adds the new board to the list of boards
 	const onAddNewBoard = (name, description, thumbnailPhoto) => {
 		const newBoard = {
-			id: Math.max(...boards.map((b) => b.id)) + 1,
+			id: nextBoardId,
 			name,
 			description,
 			thumbnailPhoto,
 		};
+		setNextBoardId(nextBoardId + 1);
 		setBoards([...boards, newBoard]);
 	};
 

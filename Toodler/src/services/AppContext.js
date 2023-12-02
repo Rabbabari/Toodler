@@ -16,12 +16,33 @@ export const AppProvider = ({ children }) => {
 	const [boards, setBoards] = useState(initialData.boards);
 	const [lists, setLists] = useState(initialData.lists);
 	const [tasks, setTasks] = useState(initialData.tasks);
-
+	const [nextBoardId, setNextBoardId] = useState(
+		boards[boards.length - 1].id + 1
+	);
+	const [nextListId, setNextListId] = useState(
+		lists[lists.length - 1].id + 1
+	);
+	const [nextTaskId, setNextTaskId] = useState(
+		tasks[tasks.length - 1].id + 1
+	);
 	// Returning the context provider with the application state
 	// The value prop contains objects and functions for state management
 	return (
 		<AppContext.Provider
-			value={{ boards, setBoards, lists, setLists, tasks, setTasks }}
+			value={{
+				boards,
+				setBoards,
+				lists,
+				setLists,
+				tasks,
+				setTasks,
+				nextBoardId,
+				setNextBoardId,
+				nextListId,
+				setNextListId,
+				nextTaskId,
+				setNextTaskId,
+			}}
 		>
 			{children}
 		</AppContext.Provider>
