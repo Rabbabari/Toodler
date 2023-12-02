@@ -36,9 +36,10 @@ const TaskMoveModal = ({ isOpen, closeModal, moveTasks, taskListId }) => {
 
 	return (
 		<Modal isOpen={isOpen} closeModal={closeModal}>
-			<Text styles={styles.text}>Pick a list</Text>
-			<View style={styles.formContainer}>
+			<Text style={styles.text}>Pick a list</Text>
+			<View style={{ zIndex: 100 }}>
 				<DropDownPicker
+					style={styles.textInput}
 					items={listCopy}
 					value={listId}
 					open={open}

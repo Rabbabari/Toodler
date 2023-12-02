@@ -26,14 +26,15 @@ const TaskEditModal = ({ isOpen, closeModal, task, updateTask }) => {
 
 	return (
 		<Modal isOpen={isOpen} closeModal={closeModal}>
-			<Text style={styles.text}>Choose name</Text>
-			<View style={styles.formContainer}>
+			<Text style={styles.text}>Name</Text>
+			<View>
 				<TextInput
 					style={styles.textInput}
 					placeholder="Task name"
 					value={name}
 					onChangeText={setName}
 				/>
+				<Text style={styles.text}>Description</Text>
 				<TextInput
 					style={styles.textInput}
 					placeholder="Task description"

@@ -46,13 +46,14 @@ const BoardEditModal = ({ isOpen, closeModal, board, updateBoard }) => {
 	return (
 		<Modal isOpen={isOpen} closeModal={closeModal}>
 			<Text style={styles.text}>Choose name</Text>
-			<View style={styles.formContainer}>
+			<View>
 				<TextInput
 					style={styles.textInput}
 					placeholder="Board name"
 					value={name}
 					onChangeText={setName}
 				/>
+				<Text style={styles.text}>Write description</Text>
 				<TextInput
 					style={styles.textInput}
 					placeholder="Board description"
