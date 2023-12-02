@@ -67,7 +67,6 @@ const Board = () => {
 		setNextBoardId(nextBoardId + 1);
 		setBoards([...boards, newBoard]);
 	};
-
 	return (
 		<View style={{ flex: 1 }}>
 			<Toolbar
