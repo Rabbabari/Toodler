@@ -12,6 +12,7 @@ const TaskBar = ({
 	onUpdateTask,
 }) => {
 	const lenOne = selectedTasksLength === 1;
+
 	return (
 		<View styleName="horzontal" style={styles.toolbar}>
 			<TouchableHighlight style={styles.toolbarAction} onPress={onAdd}>
@@ -30,7 +31,7 @@ const TaskBar = ({
 			<TouchableHighlight
 				style={[
 					styles.toolbarAction,
-					!hasSelectedTasks ? { backgroundColor: "#ff8da0" } : {},
+					!lenOne ? { backgroundColor: "#ff8da0" } : {},
 				]}
 				disabled={!lenOne}
 				onPress={onUpdateTask}
