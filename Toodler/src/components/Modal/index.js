@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import NativeModal from "react-native-modal";
 import styles from "../../styles/modal";
 
+// A base for all modals
 const Modal = ({ isOpen, closeModal, title, children }) => (
 	<NativeModal
 		isVisible={isOpen}

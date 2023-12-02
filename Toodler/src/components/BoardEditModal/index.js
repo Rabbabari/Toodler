@@ -38,10 +38,7 @@ const BoardEditModal = ({ isOpen, closeModal, board, updateBoard }) => {
 		if (!name.trim()) {
 			Alert.alert("Error", "Please enter a name");
 		} else {
-			board.name = name;
-			board.thumbnailPhoto = thumbnailPhoto;
-			board.description = description;
-			updateBoard(board);
+			updateBoard(board, name, thumbnailPhoto, description);
 			closeModal();
 		}
 	};

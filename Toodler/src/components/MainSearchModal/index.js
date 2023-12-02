@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { View, TextInput, TouchableOpacity, Text } from "react-native";
-import Modal from "../ListsModal"; // Importing custom modal component
+import Modal from "../Modal"; // Importing custom modal component
 import styles from "../../styles/modal";
 
 const SearchModal = ({ isOpen, closeModal, onSearch }) => {

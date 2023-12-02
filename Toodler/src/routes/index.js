@@ -9,6 +9,7 @@ import Board from "../views/Board";
 import Lists from "../views/Lists";
 import TaskListDisplay from "../views/Task";
 
+// Sets up all the routs in the app
 const Routes = () => {
 	return (
 		<NavigationContainer>

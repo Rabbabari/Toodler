@@ -8,14 +8,9 @@ export default StyleSheet.create({
 		fontSize: 17,
 	},
 	button: {
-		paddingTop: 10,
-		paddingBottom: 10,
-		marginBottom: 10,
-		marginTop: 10,
-		marginLeft: 40,
-		marginRight: 40,
-		paddingLeft: 20,
-		paddingRight: 20,
+		paddingVertical: 10,
+		marginVertical: 10,
+		marginHorizontal: 40,
 		borderColor: "black",
 		borderRadius: 10,
 		shadowOffset: {

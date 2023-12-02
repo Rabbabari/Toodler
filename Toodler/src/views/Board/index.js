@@ -38,9 +38,11 @@ const Board = () => {
 		setSelectedBoard([]);
 	};
 
-	const updateBoard = (boardId) => {
-		// NOTE
+	const updateBoard = (board, newName, newThumbnailPhoto, newDescription) => {
 		// update the selected task
+		board.name = newName;
+		board.thumbnailPhoto = newThumbnailPhoto;
+		board.description = newDescription;
 	};
 
 	// Edit the selected board
@@ -64,10 +66,6 @@ const Board = () => {
 		setBoards([...boards, newBoard]);
 	};
 
-	takePhoto = async () => {
-		const photo = await imageService.takePhoto();
-	};
-
 	return (
 		<View style={{ flex: 1 }}>
 			<Toolbar
@@ -85,7 +83,6 @@ const Board = () => {
 			<CreateBoardModal
 				isOpen={isCreateModalOpen}
 				closeModal={() => setIsCreateModalOpen(false)}
-				onCreateBoard={() => {}}
 				selectFromCameraRoll={() => {}}
 				onAddNewBoard={onAddNewBoard}
 			/>

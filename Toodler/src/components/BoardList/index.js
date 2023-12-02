@@ -13,8 +13,6 @@ const BoardList = ({ boards, selectedBoard, onLongPress }) => {
 				renderItem={({
 					item: { id, name, description, thumbnailPhoto },
 				}) => {
-					//console.log(id);
-					//console.log("Before");
 					return (
 						<BoardThumbnail
 							id={id}

@@ -1,52 +1,48 @@
 import React, { useState, useLayoutEffect } from "react";
-import { View, Text, TouchableHighlight, FlatList } from "react-native";
+import { View } from "react-native";
 import { useRoute, useNavigation } from "@react-navigation/native";
+import { useData } from "../../services/AppContext";
 import TaskBar from "../../components/TaskBar";
 import TaskList from "../../components/TaskList";
 import TaskAddModal from "../../components/TaskAddModal";
 import TaskEditModal from "../../components/TaskEditModal";
 import TaskMoveModal from "../../components/TaskMoveModal";
-import { useData } from "../../services/AppContext";
 
 const TaskListDisplay = () => {
-	const route = useRoute();
-	const listId = route.params?.listId;
-	const listName = route.params?.listName;
+	const route = useRoute(); // set up the routing
+	const listId = route.params?.listId; //id of the list currently open
+	const listName = route.params?.listName; // name of the list currently open
+
 	// A boolean flags to indicate if a modal is open or not
 	const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 	const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 	const [isMoveModalOpen, setIsMoveModalOpen] = useState(false);
 
-	// All tasks, regardless of listId
-	const { tasks, setTasks } = useData();
-	// All tasks filtered by lists
-	const filteredTasks = tasks.filter((task) => task.listId === listId);
-	// All selected tasks
-	const [selectedTasks, setSelectedTasks] = useState([]);
-	const [tasksToMove, setTasksToMove] = useState([]);
-	const [editingTask, setEditingTask] = useState(null);
+	const { tasks, setTasks } = useData(); // All tasks, regardless of listId
+	const filteredTasks = tasks.filter((task) => task.listId === listId); // All tasks filtered by lists
+	const [selectedTasks, setSelectedTasks] = useState([]); // All selected tasks
+	const [editingTask, setEditingTask] = useState(null); // the task being edited
 
-	const navigation = useNavigation();
+	const navigation = useNavigation(); //sets up the link to navigation
 
+	//displays the name of the currently selected list
 	useLayoutEffect(() => {
 		if (listName) {
 			navigation.setOptions({ title: listName });
 		}
 	}, [listName, navigation]);
+
 	// Toggles isFinished between true and false
 	const checkTask = (id) => {
-		const updatedTasks = [...tasks];
+		const updatedTasks = [...tasks]; // A copy of all tasks in the state
 
-		const taskIndex = updatedTasks.findIndex((task) => task.id === id);
-		const taskToChange = updatedTasks[taskIndex];
+		const taskIndex = updatedTasks.findIndex((task) => task.id === id); //Find the index of the selected task
+		const taskToChange = updatedTasks[taskIndex]; // The task being checked off
 		if (taskIndex !== -1) {
-			if (taskToChange.isFinished) {
-				taskToChange.isFinished = false;
-			} else {
-				taskToChange.isFinished = true;
-			}
+			// Toggle isFinished between true and false
+			taskToChange.isFinished = !taskToChange.isFinished;
 		}
-		setTasks(updatedTasks);
+		setTasks(updatedTasks); // Update all tasks
 	};
 
 	// Adds a task to the array of selected tasks
@@ -62,103 +58,99 @@ const TaskListDisplay = () => {
 
 	// Delete a task from the state
 	const deleteTask = () => {
-		const tasksCopy = [...tasks];
-		const updatedTasks = tasksCopy.filter(
+		// Remove all selected tasks from the copy of all tasks
+		const updatedTasks = [...tasks].filter(
 			(task) => !selectedTasks.includes(task.id)
 		);
-		setTasks(updatedTasks);
-		setSelectedTasks([]);
+		setTasks(updatedTasks); // Update the list of all tasks
+		setSelectedTasks([]); // Clear the list of selected tasks
 	};
 
+	// Create a new task and add it to the state of all tasks
 	const createNewTask = (name, description) => {
 		const newTask = {
+			// Create a new task
 			id: Math.max(...tasks.map((l) => l.id)) + 1,
 			name: name,
 			description: description,
 			isFinished: false,
 			listId: listId,
 		};
-		setTasks([...tasks, newTask]);
+		setTasks([...tasks, newTask]); // Add it to the state
 	};
 
+	// Updates a task with a new name and description
 	const updateTask = (newName, newDescription) => {
 		editingTask.name = newName;
 		editingTask.description = newDescription;
-		setSelectedTasks([]);
+		setSelectedTasks([]); // Clear the selected task
+		setEditingTask(null); // Clears the editing task
 	};
 
+	// Sets the task to be edited. The only selected task becomes the task that will be edited
 	const editSelectedTask = () => {
 		const taskToEdit = tasks.find((list) => list.id === selectedTasks[0]);
-		setEditingTask(taskToEdit);
-		setIsEditModalOpen(true);
+		setEditingTask(taskToEdit); //Sets the editing task as the only selected task
+		setIsEditModalOpen(true); // Opens the editing modal
 	};
 
-	const moveSelectedTasks = () => {
-		const taskCopy = [...tasks];
-		const filteredMoveTasks = taskCopy.filter((task) =>
-			selectedTasks.includes(task.id)
-		);
-		setTasksToMove(filteredMoveTasks);
-		setIsMoveModalOpen(true);
-	};
-
-	const moveTask = (newListId) => {
-		// Move all selected tasks to another list
-		// Display all lists to chose which to move to
-		// change listId for selected tasks to the new list
-
+	// Moves all the selected task from their original list to another list
+	const moveTasks = (newListId) => {
+		// Copies the tasks, and updates the listId of the selected tasks
 		const updatedTasks = [...tasks].map((task) => {
 			if (selectedTasks.includes(task.id)) {
 				return { ...task, listId: newListId };
 			}
 			return task;
 		});
-		setTasks(updatedTasks);
+		setTasks(updatedTasks); // Sets the state will the tasks that have been moved
 	};
 
+	// The return from the task list display
 	return (
 		<View style={{ flex: 1 }}>
 			<TaskBar
+				// Toolbar for tasks
 				hasSelectedTasks={selectedTasks.length > 0}
 				selectedTasksLength={selectedTasks.length}
 				deleteTask={() => deleteTask()}
 				onAdd={() => {
 					setIsAddModalOpen(true);
 				}}
-				onMove={moveSelectedTasks}
+				onMove={() => {
+					setIsMoveModalOpen(true);
+				}}
 				onUpdateTask={editSelectedTask}
 			/>
 			<TaskList
-				onCheck={(id) => onTaskCheck(id)}
-				onLongPress={(id) => onLongPress(id)}
+				// Lists all tasks within a certain list
 				tasks={filteredTasks}
 				selectedTasks={selectedTasks}
-				checkTask={(id) => checkTask(id)}
+				onLongPress={(id) => onLongPress(id)} //make the task selected
+				checkTask={(id) => checkTask(id)} //mark a task as done
 			/>
 			<TaskAddModal
+				// A modal to add a new task
 				isOpen={isAddModalOpen}
 				closeModal={() => setIsAddModalOpen(false)}
 				createTask={createNewTask}
 			/>
 			<TaskEditModal
+				// A modal to edit a selected task
 				isOpen={isEditModalOpen}
 				closeModal={() => setIsEditModalOpen(false)}
 				task={editingTask}
-				updateTask={updateTask}
+				updateTask={updateTask} // A function to update a task
 			/>
 			<TaskMoveModal
+				// A modal to move tasks
 				isOpen={isMoveModalOpen}
 				closeModal={() => setIsMoveModalOpen(false)}
-				moveTask={moveTask}
+				moveTasks={moveTasks} // A function to move tasks
+				taskListId={listId}
 			/>
 		</View>
 	);
 };
-
-// Display tasks
-// Create new task
-// Delete a task
-// Move task from one list to another
-// Modify a task
 
 export default TaskListDisplay;
