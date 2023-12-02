@@ -23,6 +23,7 @@ const TaskListDisplay = () => {
 	const [selectedTasks, setSelectedTasks] = useState([]); // All selected tasks
 	const [editingTask, setEditingTask] = useState(null); // the task being edited
 
+	const { nextTaskId, setNextTaskId } = useData();
 	const navigation = useNavigation(); //sets up the link to navigation
 
 	//displays the name of the currently selected list
@@ -70,12 +71,13 @@ const TaskListDisplay = () => {
 	const createNewTask = (name, description) => {
 		const newTask = {
 			// Create a new task
-			id: Math.max(...tasks.map((l) => l.id)) + 1,
+			id: nextTaskId,
 			name: name,
 			description: description,
 			isFinished: false,
 			listId: listId,
 		};
+		setNextTaskId(nextTaskId + 1);
 		setTasks([...tasks, newTask]); // Add it to the state
 	};
 

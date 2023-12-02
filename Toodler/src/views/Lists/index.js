@@ -15,6 +15,7 @@ const Lists = () => {
 
 	// Using the custom hook to access and set lists
 	const { lists, setLists } = useData();
+	const { nextListId, setNextListId } = useData();
 
 	// State for managing selected lists, modals visibility, and editing list
 	const [selectedLists, setSelectedLists] = useState([]);
@@ -49,11 +50,12 @@ const Lists = () => {
 	// Handler for adding a new list
 	const onAddNewList = (name, color) => {
 		const newList = {
-			id: Math.max(0, ...lists.map((l) => l.id)) + 1,
+			id: nextListId,
 			name,
 			color,
 			boardId: boardId,
 		};
+		setNextListId(nextListId + 1);
 		setLists([...lists, newList]);
 	};
 
