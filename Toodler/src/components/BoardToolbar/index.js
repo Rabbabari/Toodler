@@ -37,7 +37,7 @@ const Toolbar = ({
 					!hasSelectedBoards ? { backgroundColor: "#ff8da0" } : {},
 				]}
 				disabled={!hasSelectedBoards}
-				onPress={eleteBoard}
+				onPress={deleteBoard}
 			>
 				<Text style={styles.toolbarActionText}>Delete</Text>
 			</TouchableHighlight>
